@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>業務委託契約書 解説 — SYNAYAKA × 井辻・荒井</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --text-xs:   0.618rem;
+      --text-sm:   0.786rem;
+      --text-base: 1rem;
+      --text-md:   1.236rem;
+      --text-lg:   1.618rem;
+      --text-xl:   2.618rem;
+
+      --leading:       1.618;
+      --leading-tight: 1.236;
+
+      --space-1: 0.309rem;
+      --space-2: 0.5rem;
+      --space-3: 0.809rem;
+      --space-4: 1rem;
+      --space-5: 1.618rem;
+      --space-6: 2.618rem;
+      --space-7: 4.236rem;
+
+      --container-md: 971px;
+      --content-col:  61.8%;
+      --sidebar-col:  38.2%;
+
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --radius-xl: 24px;
+
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+      --shadow-lg: 0 10px 40px rgba(0,0,0,0.12);
+
+      --bg:      #f6f8fc;
+      --surface: #ffffff;
+      --text:    #1b2333;
+      --sub:     #4f5d75;
+      --accent:  #2447f9;
+      --line:    #dce3f1;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+        "Hiragino Kaku Gothic ProN", "Hiragino Sans",
+        "Noto Sans JP", "Yu Gothic", sans-serif;
+      font-size: var(--text-base);
+      line-height: var(--leading);
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    /* Nav */
+    nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+      padding: var(--space-4) var(--space-5);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-inner {
+      max-width: var(--container-md);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-size: var(--text-sm);
+      font-weight: 700;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+    }
+    .nav-links {
+      display: flex;
+      gap: var(--space-5);
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: var(--text-sm);
+      color: var(--sub);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* Hero */
+    .hero {
+      max-width: var(--container-md);
+      margin: 0 auto;
+      padding: var(--space-7) var(--space-5) var(--space-6);
+    }
+    .kicker {
+      margin: 0 0 var(--space-2);
+      font-size: var(--text-sm);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+    }
+    h1 {
+      font-size: clamp(var(--text-lg), 3.6vw, var(--text-xl));
+      line-height: var(--leading-tight);
+      color: var(--text);
+      margin-bottom: var(--space-3);
+    }
+    .lead {
+      font-size: var(--text-md);
+      color: var(--sub);
+      max-width: 680px;
+      line-height: var(--leading);
+    }
+
+    /* Main */
+    main {
+      max-width: var(--container-md);
+      margin: 0 auto;
+      padding: 0 var(--space-5) var(--space-7);
+      display: grid;
+      gap: var(--space-6);
+    }
+
+    /* Section labels */
+    .section-label {
+      font-size: var(--text-xs);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--sub);
+      margin-bottom: var(--space-4);
+    }
+    h2 {
+      font-size: var(--text-lg);
+      line-height: var(--leading-tight);
+      margin-bottom: var(--space-4);
+      color: var(--text);
+    }
+    h3 {
+      font-size: var(--text-base);
+      font-weight: 700;
+      margin-bottom: var(--space-3);
+      color: var(--text);
+    }
+
+    /* Cards */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: var(--space-5);
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.15s;
+    }
+    .card:hover { box-shadow: var(--shadow-md); }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: var(--space-5);
+    }
+
+    /* KPI blocks */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: var(--space-4);
+    }
+    .kpi {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: var(--space-4) var(--space-5);
+    }
+    .kpi-num {
+      font-size: var(--text-xl);
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: var(--space-2);
+    }
+    .kpi-unit {
+      font-size: var(--text-sm);
+      font-weight: 400;
+      color: var(--sub);
+    }
+    .kpi-label {
+      font-size: var(--text-xs);
+      color: var(--sub);
+    }
+
+    /* Badge */
+    .badge {
+      display: inline-block;
+      padding: var(--space-1) var(--space-3);
+      border-radius: 999px;
+      font-size: var(--text-xs);
+      font-weight: 600;
+    }
+    .badge-done   { background: #dcfce7; color: #166534; }
+    .badge-warn   { background: #fef9c3; color: #854d0e; }
+    .badge-free   { background: #eff6ff; color: #1d4ed8; }
+    .badge-block  { background: #fee2e2; color: #991b1b; }
+
+    /* Table */
+    .table-wrap { overflow-x: auto; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: var(--text-sm);
+    }
+    th {
+      background: var(--bg);
+      color: var(--sub);
+      font-weight: 700;
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      text-align: left;
+      padding: var(--space-3) var(--space-4);
+      border-bottom: 1px solid var(--line);
+    }
+    td {
+      padding: var(--space-3) var(--space-4);
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      line-height: var(--leading);
+    }
+    tr:last-child td { border-bottom: none; }
+
+    /* Highlight box */
+    .highlight {
+      background: #eff6ff;
+      border-left: 4px solid var(--accent);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      padding: var(--space-4) var(--space-5);
+      font-size: var(--text-sm);
+      color: var(--text);
+      line-height: var(--leading);
+    }
+    .highlight strong { color: var(--accent); }
+
+    .warn-box {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      padding: var(--space-4) var(--space-5);
+      font-size: var(--text-sm);
+      color: var(--text);
+      line-height: var(--leading);
+    }
+
+    /* Checklist */
+    .checklist {
+      list-style: none;
+      display: grid;
+      gap: var(--space-3);
+    }
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+      font-size: var(--text-sm);
+      line-height: var(--leading);
+    }
+    .check-icon {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+    .check-required { background: #fee2e2; color: #991b1b; }
+    .check-ok       { background: #dcfce7; color: #166534; }
+
+    /* Golden split */
+    .golden-grid {
+      display: grid;
+      grid-template-columns: var(--content-col) var(--sidebar-col);
+      gap: var(--space-5);
+      align-items: start;
+    }
+    @media (max-width: 768px) {
+      .golden-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+
+    /* Flow list */
+    .flow {
+      display: grid;
+      gap: var(--space-3);
+    }
+    .flow-item {
+      display: flex;
+      gap: var(--space-4);
+      align-items: flex-start;
+    }
+    .flow-num {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      background: var(--accent);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--text-xs);
+      font-weight: 700;
+      margin-top: 2px;
+    }
+    .flow-body { font-size: var(--text-sm); line-height: var(--leading); }
+    .flow-body strong { display: block; font-weight: 700; margin-bottom: var(--space-1); }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: var(--space-5);
+      text-align: center;
+      font-size: var(--text-xs);
+      color: var(--sub);
+      margin-top: var(--space-6);
+    }
+
+    /* Divider */
+    hr {
+      border: none;
+      border-top: 1px solid var(--line);
+      margin: 0;
+    }
+
+    p { font-size: var(--text-sm); line-height: var(--leading); color: var(--sub); margin-top: var(--space-3); }
+    strong { color: var(--text); }
+  </style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">SYNAYAKA 業務委託契約</a>
+    <ul class="nav-links">
+      <li><a href="#overview">概要</a></li>
+      <li><a href="#reward">報酬</a></li>
+      <li><a href="#ip">知的財産</a></li>
+      <li><a href="#noncompete">競業避止</a></li>
+      <li><a href="#negotiation">交渉ポイント</a></li>
+      <li><a href="#checklist">チェックリスト</a></li>
+      <li><a href="changes.html" style="color:#be123c;font-weight:700;">変更要望点</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero -->
+<div class="hero">
+  <p class="kicker">業務委託契約書 — 2026-03-21版</p>
+  <h1>SYNAYAKA × 井辻・荒井<br>契約内容まとめ</h1>
+  <p class="lead">AIオートメーション開発業務委託契約の全条項を、わかりやすく整理した解説ページです。</p>
+</div>
+
+<main>
+
+  <!-- KPIs -->
+  <section id="overview">
+    <p class="section-label">基本情報</p>
+    <div class="kpi-grid">
+      <div class="kpi">
+        <div class="kpi-num">120,000<span class="kpi-unit">円</span></div>
+        <div class="kpi-label">基本報酬（月額・税別）× 各人</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-num">20<span class="kpi-unit">%</span></div>
+        <div class="kpi-label">成果報酬（対象売上に対して）</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-num">6<span class="kpi-unit">か月</span></div>
+        <div class="kpi-label">初期契約期間（以降1か月更新）</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-num">1<span class="kpi-unit">年</span></div>
+        <div class="kpi-label">競業避止期間（採用支援業務のみ）</div>
+      </div>
+    </div>
+  </section>
+
+  <hr />
+
+  <!-- 当事者 -->
+  <section>
+    <p class="section-label">当事者</p>
+    <div class="card">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>区分</th>
+              <th>名称</th>
+              <th>役割</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>甲</strong></td>
+              <td>株式会社SYNAYAKA<br><span style="color:var(--sub); font-size:var(--text-xs)">代表取締役 養田峻介</span></td>
+              <td>委託者（発注側）</td>
+            </tr>
+            <tr>
+              <td><strong>乙1</strong></td>
+              <td>井辻光斗</td>
+              <td>受託者（AIオートメーション開発）</td>
+            </tr>
+            <tr>
+              <td><strong>乙2</strong></td>
+              <td>荒井知憲</td>
+              <td>受託者（AIオートメーション開発）</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="highlight" style="margin-top: var(--space-4);">
+        <strong>重要：</strong>この契約は<strong>業務委託</strong>であり、雇用契約ではありません。使用従属関係は生じません（第1条2項）。
+      </div>
+    </div>
+  </section>
+
+  <hr />
+
+  <!-- 報酬 -->
+  <section id="reward">
+    <p class="section-label">報酬体系（第5条・第6条・別紙1）</p>
+    <div class="golden-grid">
+      <div class="card">
+        <h3>基本報酬</h3>
+        <p>乙1・乙2それぞれに <strong>月額12万円（税別）</strong> を支払う。</p>
+        <p style="margin-top: var(--space-4);">支払：<strong>月末締め → 翌月末払い</strong></p>
+        <p>時間給ではなく「継続的遂行体制の提供」への対価。稼働時間に関係なく支払われる。</p>
+      </div>
+      <div class="card">
+        <h3>成果報酬</h3>
+        <p>対象案件の <strong>売上の20%</strong> を乙1・乙2に支払う。</p>
+        <p style="margin-top: var(--space-4);">分配：原則 <strong>乙1・乙2で各50%</strong>（協議で変更可）</p>
+        <p>支払：甲が売上受領した月末締め → <strong>翌月末払い</strong></p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: var(--space-5);">
+      <h3>売上・費用のルール</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>項目</th><th>内容</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>対象売上の範囲</strong></td>
+              <td>初期費用・月額利用料・追加改修費（消費税除く）</td>
+            </tr>
+            <tr>
+              <td><strong>控除禁止</strong></td>
+              <td>API料・人件費・広告費・外注費・共通管理費などを<strong>差し引いてはならない</strong></td>
+            </tr>
+            <tr>
+              <td><strong>明細開示</strong></td>
+              <td>毎月末締め → 翌月10日までに案件名・請求額・入金額・成果報酬額を開示</td>
+            </tr>
+            <tr>
+              <td><strong>費用負担</strong></td>
+              <td>API・クラウド・SaaS費用は<strong>甲（SYNAYAKA）負担</strong>。立替時は請求後7日以内に返金</td>
+            </tr>
+            <tr>
+              <td><strong>契約終了後</strong></td>
+              <td>顧客との関係が続く限り、成果報酬支払義務は<strong>永続する</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <hr />
+
+  <!-- 対象案件 -->
+  <section>
+    <p class="section-label">対象案件の認定（第7条）</p>
+    <div class="card">
+      <p>以下のいずれかに当てはまる案件は<strong>「対象案件」と推定</strong>され、成果報酬の対象となる。</p>
+      <div class="flow" style="margin-top: var(--space-5);">
+        <div class="flow-item">
+          <div class="flow-num">1</div>
+          <div class="flow-body">
+            <strong>中心的役割</strong>
+            乙1または乙2がAI機能の設計・実装・改良の中心的役割を担った案件
+          </div>
+        </div>
+        <div class="flow-item">
+          <div class="flow-num">2</div>
+          <div class="flow-body">
+            <strong>成果物が組み込まれている</strong>
+            乙1または乙2が開発した成果物が当該案件に含まれている
+          </div>
+        </div>
+        <div class="flow-item">
+          <div class="flow-num">3</div>
+          <div class="flow-body">
+            <strong>再利用可能要素が使われている</strong>
+            ワークフロー・プロンプト・スクリプト・テンプレートが利用されている
+          </div>
+        </div>
+      </div>
+      <div class="warn-box" style="margin-top: var(--space-5);">
+        <strong>運用上の注意：</strong>疑義が生じた場合は協議（第7条1項）。<br>
+        トラブル防止のため、<strong>案件開始時に「これは対象案件か」を書面で確認</strong>する習慣をつけること。
+      </div>
+    </div>
+  </section>
+
+  <hr />
+
+  <!-- 知的財産 -->
+  <section id="ip">
+    <p class="section-label">知的財産権（第9条）— 乙に有利な設計</p>
+    <div class="card-grid">
+      <div class="card">
+        <div style="display:flex; align-items:center; gap:var(--space-2); margin-bottom:var(--space-3);">
+          <span class="badge badge-done">乙の権利</span>
+        </div>
+        <h3>著作権・特許権・ノウハウ</h3>
+        <p>成果物に関する<strong>一切の知的財産権は乙1・乙2に帰属</strong>する（第9条1項）。</p>
+      </div>
+      <div class="card">
+        <div style="display:flex; align-items:center; gap:var(--space-2); margin-bottom:var(--space-3);">
+          <span class="badge badge-done">乙の権利</span>
+        </div>
+        <h3>既存知財も乙のもの</h3>
+        <p>契約締結前から保有していた技術・プロンプト・ワークフロー等は<strong>当然に乙に帰属</strong>（第9条2項）。</p>
+      </div>
+      <div class="card">
+        <div style="display:flex; align-items:center; gap:var(--space-2); margin-bottom:var(--space-3);">
+          <span class="badge badge-warn">甲の利用範囲</span>
+        </div>
+        <h3>甲が使えること</h3>
+        <p>既存事業・対象案件の遂行に必要な範囲で<strong>非独占的に利用可能</strong>（第9条3項）。</p>
+      </div>
+      <div class="card">
+        <div style="display:flex; align-items:center; gap:var(--space-2); margin-bottom:var(--space-3);">
+          <span class="badge badge-block">甲にできないこと</span>
+        </div>
+        <h3>甲が使えないこと</h3>
+        <p>第三者への<strong>再販売・横展開・大幅改変・再許諾は禁止</strong>（要承諾）（第9条4項）。</p>
+      </div>
+      <div class="card">
+        <div style="display:flex; align-items:center; gap:var(--space-2); margin-bottom:var(--space-3);">
+          <span class="badge badge-free">乙の自由</span>
+        </div>
+        <h3>AI機能の持ち出し・自由利用</h3>
+        <p>乙は成果物・既存知財を<strong>自己の事業・第三者向け業務に自由に利用できる</strong>（第9条6項）。<br>
+        SYNAYAKAの秘密情報・顧客情報は持ち出し不可（第11条）。</p>
+      </div>
+      <div class="card">
+        <div style="display:flex; align-items:center; gap:var(--space-2); margin-bottom:var(--space-3);">
+          <span class="badge badge-done">乙の権利</span>
+        </div>
+        <h3>支払遅延時の対抗手段</h3>
+        <p>甲が成果報酬を払わない場合、乙は<strong>利用許諾を停止・制限できる</strong>（第9条5項）。</p>
+      </div>
+    </div>
+  </section>
+
+  <hr />
+
+  <!-- 競業避止 -->
+  <section id="noncompete">
+    <p class="section-label">競業避止（第12条）</p>
+    <div class="card">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>活動</th><th>制限</th><th>期間</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>純粋なAI導入支援・開発・コンサルティング</td>
+              <td><span class="badge badge-free">制限なし・自由</span></td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>自社プロダクトの提供・新規事業の立ち上げ</td>
+              <td><span class="badge badge-free">制限なし・自由</span></td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>第三者向け開発（採用支援目的でないもの）</td>
+              <td><span class="badge badge-free">制限なし・自由</span></td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>甲の顧客に対して採用支援業務を直接提供</td>
+              <td><span class="badge badge-block">禁止（要承諾）</span></td>
+              <td>契約中＋終了後1年</td>
+            </tr>
+            <tr>
+              <td>甲の顧客を対象に採用支援事業を共同で行う</td>
+              <td><span class="badge badge-block">禁止（要承諾）</span></td>
+              <td>契約中＋終了後1年</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="highlight" style="margin-top: var(--space-4);">
+        <strong>自分たちのAI事業の利益は100%自分たちのもの。</strong><br>
+        採用支援目的でないAI開発・コンサル事業に対して、SYNAYAKAへの報告義務・成果報酬支払い義務は一切発生しない（第12条1項＋第9条6項）。
+      </div>
+    </div>
+  </section>
+
+  <hr />
+
+  <!-- その他重要条項 -->
+  <section>
+    <p class="section-label">その他の重要ポイント</p>
+    <div class="card">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>条項</th><th>内容</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>第3条</strong><br>業務遂行</td>
+              <td>作業日時・場所・方法は乙が自由に決める。甲の承諾なく他の仕事も受けられる</td>
+            </tr>
+            <tr>
+              <td><strong>第4条</strong><br>契約期間</td>
+              <td>6か月間、以降1か月ごと自動更新</td>
+            </tr>
+            <tr>
+              <td><strong>第11条</strong><br>秘密保持</td>
+              <td>契約終了後2年間継続。甲は乙の既存知財・一般的ノウハウを「秘密情報」と主張できない</td>
+            </tr>
+            <tr>
+              <td><strong>第13条</strong><br>検収</td>
+              <td>納品後7日以内に検収の可否通知。通知がなければ検収完了とみなす</td>
+            </tr>
+            <tr>
+              <td><strong>第15条</strong><br>解約</td>
+              <td>1か月前通知でどちらからでも解約可能。解約後も成果報酬・知財権は継続</td>
+            </tr>
+            <tr>
+              <td><strong>第16条</strong><br>組織再編</td>
+              <td>甲が合併・事業譲渡等を行う場合、乙の事前承諾が必要。第6条・第9条の義務は当然承継</td>
+            </tr>
+            <tr>
+              <td><strong>第18条</strong><br>損害賠償</td>
+              <td>乙の賠償上限は「成果報酬の総額」（故意・重過失は除く）</td>
+            </tr>
+            <tr>
+              <td><strong>第20条</strong><br>管轄</td>
+              <td>紛争時は東京地方裁判所が第一審</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <hr />
+
+  <!-- 変更交渉ポイント -->
+  <section id="negotiation">
+    <p class="section-label">署名前 変更交渉ポイント（2026-03-23時点）</p>
+
+    <!-- 必須 -->
+    <div class="card" style="border-left: 4px solid #991b1b; margin-bottom: var(--space-5);">
+      <div style="display:flex; align-items:center; gap:var(--space-3); margin-bottom:var(--space-4);">
+        <span class="badge badge-block">必須</span>
+        <h3 style="margin:0;">第8条3項 — 誤字修正</h3>
+      </div>
+      <p><strong>問題：</strong>「変ftっjっh更」という明らかな誤字がある。公式文書の誤字は解釈の余地を生む。</p>
+      <div class="highlight" style="margin-top:var(--space-4);">
+        「変ftっjっh更」→ <strong>「変更」</strong> に修正してから署名する
+      </div>
+    </div>
+
+    <!-- 優先度：高 3件 -->
+    <div class="card-grid" style="margin-bottom: var(--space-5);">
+
+      <div class="card" style="border-left: 4px solid #f59e0b;">
+        <div style="display:flex; align-items:center; gap:var(--space-3); margin-bottom:var(--space-4);">
+          <span class="badge badge-warn">優先度：高</span>
+          <h3 style="margin:0;">基本報酬を13万円に引き上げ</h3>
+        </div>
+        <p><strong>対象：</strong>第5条1項</p>
+        <p style="margin-top:var(--space-3);"><strong>問題：</strong>月12万円は時間外稼働を含む実態に対して低い。稼働上限が未定の固定額のため実質時給が際限なく下がるリスクがある。</p>
+        <div class="warn-box" style="margin-top:var(--space-4);">
+          月額を <strong>130,000円</strong> に引き上げ。手取り保証・稼働時間上限とセットで交渉する。
+        </div>
+      </div>
+
+      <div class="card" style="border-left: 4px solid #f59e0b;">
+        <div style="display:flex; align-items:center; gap:var(--space-3); margin-bottom:var(--space-4);">
+          <span class="badge badge-warn">優先度：高</span>
+          <h3 style="margin:0;">12万円を手取り額として保証</h3>
+        </div>
+        <p><strong>対象：</strong>第5条1・2項</p>
+        <p style="margin-top:var(--space-3);"><strong>問題：</strong>業務委託報酬には源泉徴収（10.21%）が適用される場合がある。そのままだと振込額は約107,748円になる。</p>
+        <div class="warn-box" style="margin-top:var(--space-4);">
+          追加文言：「月額120,000円は乙の手取り額とし、源泉徴収が必要な場合は甲が源泉徴収相当額を上乗せした額を支払総額とする。」<br>
+          <span style="color:var(--sub);">※ 甲の支払総額は約133,600円になる</span>
+        </div>
+      </div>
+
+      <div class="card" style="border-left: 4px solid #f59e0b;">
+        <div style="display:flex; align-items:center; gap:var(--space-3); margin-bottom:var(--space-4);">
+          <span class="badge badge-warn">優先度：高</span>
+          <h3 style="margin:0;">月間稼働時間の上限を明記</h3>
+        </div>
+        <p><strong>対象：</strong>第5条3項</p>
+        <p style="margin-top:var(--space-3);"><strong>問題：</strong>「時間給ではない」＝何時間働かせても月12万が成立する構造。時間外稼働がサービス残業扱いになるリスク。</p>
+        <div class="warn-box" style="margin-top:var(--space-4);">
+          追加文言：「月間の標準稼働時間は<strong>80時間</strong>とし、甲が80時間を超える稼働を求める場合は甲乙協議のうえ追加報酬を定めなければならない。」
+        </div>
+      </div>
+
+      <div class="card" style="border-left: 4px solid #f59e0b;">
+        <div style="display:flex; align-items:center; gap:var(--space-3); margin-bottom:var(--space-4);">
+          <span class="badge badge-warn">優先度：高</span>
+          <h3 style="margin:0;">対象案件の事前確認プロセスを条文化</h3>
+        </div>
+        <p><strong>対象：</strong>第7条</p>
+        <p style="margin-top:var(--space-3);"><strong>問題：</strong>「疑義があれば誠実に協議」のみで、事前確認プロセスがない。後から「あれは対象案件ではなかった」と言われると成果報酬（20%）を請求しにくくなる。</p>
+        <div class="warn-box" style="margin-top:var(--space-4);">
+          追加文言：「案件開始時に、甲は乙1および乙2に対し、当該案件が対象案件に該当するか否かを書面または電磁的方法により通知する。甲が通知を行わない場合、乙1または乙2が対象案件と主張したときは対象案件と推定する。」
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 優先度：中 2件 -->
+    <div class="card-grid">
+
+      <div class="card">
+        <div style="display:flex; align-items:center; gap:var(--space-3); margin-bottom:var(--space-4);">
+          <span class="badge badge-free">優先度：中</span>
+          <h3 style="margin:0;">乙1・乙2の個別責任を明確化</h3>
+        </div>
+        <p><strong>対象：</strong>全条文（乙1・乙2の連名部分）</p>
+        <p style="margin-top:var(--space-3);"><strong>問題：</strong>「乙1および乙2」として一括記載のため、一方の行為で他方にも責任が及ぶ可能性がある。</p>
+        <div class="highlight" style="margin-top:var(--space-4);">
+          追加文言：「乙1および乙2の本契約上の義務は、特段の合意なき限り各自独立して負うものとし、一方の行為について他方は責任を負わない。」
+        </div>
+      </div>
+
+      <div class="card">
+        <div style="display:flex; align-items:center; gap:var(--space-3); margin-bottom:var(--space-4);">
+          <span class="badge badge-free">優先度：中</span>
+          <h3 style="margin:0;">支払遅延時の遅延損害金を明記</h3>
+        </div>
+        <p><strong>対象：</strong>第5条・第6条</p>
+        <p style="margin-top:var(--space-3);"><strong>問題：</strong>支払期日は定まっているが、遅延した場合の損害金が明記されていない。法定利率（年3%）は適用されるが請求しにくい。</p>
+        <div class="highlight" style="margin-top:var(--space-4);">
+          追加文言：「甲が支払期日を超えて報酬の支払を怠った場合、遅滞額に対し年率<strong>14.6%</strong>の割合による遅延損害金を付して支払う。」
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr />
+
+  <!-- チェックリスト -->
+  <section id="checklist">
+    <p class="section-label">署名前チェックリスト</p>
+    <div class="golden-grid">
+      <div class="card">
+        <h3>署名前に必須の対応</h3>
+        <ul class="checklist" style="margin-top: var(--space-4);">
+          <li>
+            <span class="check-icon check-required">!</span>
+            <div><strong>第8条3項の誤字修正を依頼する</strong><br>
+            「変ftっjっh更」→「変更」。SYNAYAKAに修正を求めてから署名する。</div>
+          </li>
+          <li>
+            <span class="check-icon check-required">!</span>
+            <div><strong>基本報酬の引き上げ交渉（12万→13万）</strong><br>
+            手取り額保証・稼働時間上限とセットで提案する。</div>
+          </li>
+          <li>
+            <span class="check-icon check-required">!</span>
+            <div><strong>月間標準稼働80時間・超過は追加報酬を条文化</strong><br>
+            サービス残業にならないよう第5条3項に追記を求める。</div>
+          </li>
+          <li>
+            <span class="check-icon check-required">!</span>
+            <div><strong>対象案件の事前確認プロセスを条文化</strong><br>
+            案件開始時に書面で通知する義務を第7条に追記。通知なし＝対象案件と推定する条文を入れる。</div>
+          </li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>確認済み・安心してOKな点</h3>
+        <ul class="checklist" style="margin-top: var(--space-4);">
+          <li>
+            <span class="check-icon check-ok">✓</span>
+            <div><strong>AI機能は持ち出せる</strong><br>
+            自分たちが作ったAI Automation機能は自由に利用可能（第9条6項）。SYNAYAKAの顧客情報・秘密情報は除く。</div>
+          </li>
+          <li>
+            <span class="check-icon check-ok">✓</span>
+            <div><strong>自分たちのAI事業の利益は100%自分たちのもの</strong><br>
+            採用支援目的でないAI事業にSYNAYAKAへの報告・分配義務なし（第12条1項）。</div>
+          </li>
+          <li>
+            <span class="check-icon check-ok">✓</span>
+            <div><strong>副業・他の仕事は自由</strong><br>
+            甲の承諾不要で他の取引先の仕事を受けられる（第3条4項）。</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p style="color:var(--sub); font-size:var(--text-xs);">業務委託契約書（2026-03-21版）解説ページ — 内部共有用</p>
+</footer>
+
+</body>
+</html>

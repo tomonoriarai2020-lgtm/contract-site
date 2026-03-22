@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>変更要望点 — SYNAYAKA × 井辻・荒井</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --text-xs:   0.618rem;
+      --text-sm:   0.786rem;
+      --text-base: 1rem;
+      --text-md:   1.236rem;
+      --text-lg:   1.618rem;
+      --text-xl:   2.618rem;
+      --text-2xl:  4.236rem;
+
+      --leading:       1.618;
+      --leading-tight: 1.236;
+
+      --space-1: 0.309rem;
+      --space-2: 0.5rem;
+      --space-3: 0.809rem;
+      --space-4: 1rem;
+      --space-5: 1.618rem;
+      --space-6: 2.618rem;
+      --space-7: 4.236rem;
+
+      --container-md: 971px;
+      --content-col:  61.8%;
+      --sidebar-col:  38.2%;
+
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --radius-xl: 24px;
+
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+      --shadow-lg: 0 10px 40px rgba(0,0,0,0.12);
+
+      --bg:      #f6f8fc;
+      --surface: #ffffff;
+      --text:    #1b2333;
+      --sub:     #4f5d75;
+      --accent:  #2447f9;
+      --line:    #dce3f1;
+
+      --priority-high-bg:  #fff1f2;
+      --priority-high-fg:  #be123c;
+      --priority-high-border: #fecdd3;
+      --priority-mid-bg:   #fffbeb;
+      --priority-mid-fg:   #92400e;
+      --priority-mid-border: #fde68a;
+      --priority-fix-bg:   #f0fdf4;
+      --priority-fix-fg:   #166534;
+      --priority-fix-border: #bbf7d0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+        "Hiragino Kaku Gothic ProN", "Hiragino Sans",
+        "Noto Sans JP", "Yu Gothic", sans-serif;
+      font-size: var(--text-base);
+      line-height: var(--leading);
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    /* Nav */
+    nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+      padding: var(--space-4) var(--space-5);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-inner {
+      max-width: var(--container-md);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-size: var(--text-sm);
+      font-weight: 700;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+    }
+    .nav-links {
+      display: flex;
+      gap: var(--space-5);
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: var(--text-sm);
+      color: var(--sub);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links a.active { color: var(--accent); font-weight: 700; }
+    @media (max-width: 768px) { .nav-links { display: none; } }
+
+    /* Hero */
+    .hero {
+      max-width: var(--container-md);
+      margin: 0 auto;
+      padding: var(--space-7) var(--space-5) var(--space-6);
+    }
+    .kicker {
+      margin: 0 0 var(--space-2);
+      font-size: var(--text-sm);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+    }
+    h1 {
+      font-size: clamp(var(--text-lg), 3.6vw, var(--text-xl));
+      line-height: var(--leading-tight);
+      color: var(--text);
+      margin-bottom: var(--space-3);
+    }
+    .lead {
+      font-size: var(--text-md);
+      color: var(--sub);
+      max-width: 680px;
+      line-height: var(--leading);
+    }
+
+    /* Main */
+    main {
+      max-width: var(--container-md);
+      margin: 0 auto;
+      padding: 0 var(--space-5) var(--space-7);
+      display: grid;
+      gap: var(--space-6);
+    }
+
+    /* Section labels */
+    .section-label {
+      font-size: var(--text-xs);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--sub);
+      margin-bottom: var(--space-4);
+    }
+    h2 {
+      font-size: var(--text-lg);
+      line-height: var(--leading-tight);
+      margin-bottom: var(--space-4);
+      color: var(--text);
+    }
+    h3 {
+      font-size: var(--text-base);
+      font-weight: 700;
+      margin-bottom: var(--space-2);
+      color: var(--text);
+    }
+
+    /* Summary KPIs */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: var(--space-4);
+    }
+    .kpi {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: var(--space-4) var(--space-5);
+    }
+    .kpi-num {
+      font-size: var(--text-xl);
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: var(--space-2);
+    }
+    .kpi-label { font-size: var(--text-xs); color: var(--sub); }
+
+    /* Badge */
+    .badge {
+      display: inline-block;
+      padding: var(--space-1) var(--space-3);
+      border-radius: 999px;
+      font-size: var(--text-xs);
+      font-weight: 700;
+    }
+    .badge-high  { background: var(--priority-high-bg);  color: var(--priority-high-fg); }
+    .badge-mid   { background: var(--priority-mid-bg);   color: var(--priority-mid-fg); }
+    .badge-fix   { background: var(--priority-fix-bg);   color: var(--priority-fix-fg); }
+
+    /* Change item card */
+    .change-item {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.15s;
+    }
+    .change-item:hover { box-shadow: var(--shadow-md); }
+    .change-item.priority-high  { border-left: 4px solid var(--priority-high-fg); }
+    .change-item.priority-mid   { border-left: 4px solid #d97706; }
+    .change-item.priority-fix   { border-left: 4px solid #16a34a; }
+
+    .change-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: var(--space-4);
+      padding: var(--space-5);
+      border-bottom: 1px solid var(--line);
+    }
+    .change-header-left { flex: 1; }
+    .change-meta {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      margin-bottom: var(--space-2);
+    }
+    .change-article {
+      font-size: var(--text-xs);
+      font-weight: 700;
+      color: var(--sub);
+      letter-spacing: 0.04em;
+    }
+
+    .change-title {
+      font-size: var(--text-md);
+      font-weight: 700;
+      color: var(--text);
+      line-height: var(--leading-tight);
+    }
+
+    .change-body {
+      padding: var(--space-5);
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    .change-block {
+      display: grid;
+      gap: var(--space-2);
+    }
+    .block-label {
+      font-size: var(--text-xs);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--sub);
+    }
+    .block-content {
+      font-size: var(--text-sm);
+      line-height: var(--leading);
+      color: var(--text);
+    }
+
+    /* Proposed text highlight */
+    .proposed {
+      background: #eff6ff;
+      border-left: 4px solid var(--accent);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      padding: var(--space-4) var(--space-5);
+      font-size: var(--text-sm);
+      color: var(--text);
+      line-height: var(--leading);
+      font-style: italic;
+    }
+    .proposed::before {
+      content: "追加要求文言：";
+      display: block;
+      font-style: normal;
+      font-size: var(--text-xs);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+      margin-bottom: var(--space-2);
+    }
+
+    .warn-box {
+      background: var(--priority-high-bg);
+      border-left: 4px solid var(--priority-high-fg);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      padding: var(--space-4) var(--space-5);
+      font-size: var(--text-sm);
+      color: var(--text);
+      line-height: var(--leading);
+    }
+
+    /* Two-col comparison */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-4);
+    }
+    @media (max-width: 600px) { .compare-grid { grid-template-columns: 1fr; } }
+    .compare-col {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: var(--space-4);
+    }
+    .compare-col-label {
+      font-size: var(--text-xs);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      margin-bottom: var(--space-3);
+    }
+    .compare-col.current .compare-col-label { color: var(--priority-high-fg); }
+    .compare-col.desired .compare-col-label { color: var(--priority-fix-fg); }
+    .compare-col p { font-size: var(--text-sm); line-height: var(--leading); color: var(--text); margin: 0; }
+
+    /* Overview table */
+    .table-wrap { overflow-x: auto; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: var(--text-sm);
+    }
+    th {
+      background: var(--bg);
+      color: var(--sub);
+      font-weight: 700;
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      text-align: left;
+      padding: var(--space-3) var(--space-4);
+      border-bottom: 2px solid var(--line);
+    }
+    td {
+      padding: var(--space-3) var(--space-4);
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      line-height: var(--leading);
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #f8faff; }
+
+    /* OK table */
+    .ok-row td:first-child { color: var(--sub); font-size: var(--text-xs); font-weight: 700; }
+
+    /* divider */
+    hr {
+      border: none;
+      border-top: 1px solid var(--line);
+      margin: 0;
+    }
+
+    p { font-size: var(--text-sm); line-height: var(--leading); color: var(--sub); margin-top: var(--space-3); }
+    strong { color: var(--text); }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: var(--space-5);
+      text-align: center;
+      font-size: var(--text-xs);
+      color: var(--sub);
+      margin-top: var(--space-6);
+    }
+  </style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">SYNAYAKA 業務委託契約</a>
+    <ul class="nav-links">
+      <li><a href="index.html">契約書解説</a></li>
+      <li><a href="changes.html" class="active">変更要望点</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero -->
+<div class="hero">
+  <p class="kicker">契約書変更交渉 — 2026-03-23作成</p>
+  <h1>変更要望点まとめ</h1>
+  <p class="lead">署名前に確認・交渉すべき事項を優先度順に整理しています。<strong>高</strong>優先度の項目は署名前に必ず対応が必要です。</p>
+</div>
+
+<main>
+
+  <!-- Summary KPIs -->
+  <section>
+    <p class="section-label">概要サマリー</p>
+    <div class="kpi-grid">
+      <div class="kpi">
+        <div class="kpi-num" style="color:#be123c;">1</div>
+        <div class="kpi-label">必須修正（誤字）</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-num" style="color:#be123c;">4</div>
+        <div class="kpi-label">優先度【高】交渉項目</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-num" style="color:#92400e;">2</div>
+        <div class="kpi-label">優先度【中】交渉項目</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-num" style="color:#166534;">6</div>
+        <div class="kpi-label">変更不要（乙に有利）</div>
+      </div>
+    </div>
+  </section>
+
+  <hr />
+
+  <!-- 全体概要テーブル -->
+  <section id="overview">
+    <p class="section-label">交渉項目一覧</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>優先度</th>
+            <th>内容</th>
+            <th>対象条文</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="badge badge-fix">必須</span></td>
+            <td>誤字修正（「変ftっjっh更」→「変更」）</td>
+            <td>第8条3項</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-high">高</span></td>
+            <td>基本報酬12万円を手取り額として保証</td>
+            <td>第5条1・2項</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-high">高</span></td>
+            <td>基本報酬を13万円に引き上げ</td>
+            <td>第5条1項</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-high">高</span></td>
+            <td>月間稼働時間の上限（80時間）を明記</td>
+            <td>第5条3項</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-high">高</span></td>
+            <td>対象案件の事前確認プロセスを条文化</td>
+            <td>第7条</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-mid">中</span></td>
+            <td>乙1・乙2の個別責任の明確化と三者協議の設置</td>
+            <td>全条文</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-mid">中</span></td>
+            <td>支払遅延時の遅延損害金（年14.6%）を明記</td>
+            <td>第5・6条</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr />
+
+  <!-- 必須：誤字 -->
+  <section id="typo">
+    <p class="section-label">必須修正</p>
+
+    <div class="change-item priority-fix">
+      <div class="change-header">
+        <div class="change-header-left">
+          <div class="change-meta">
+            <span class="badge badge-fix">必須</span>
+            <span class="change-article">第8条3項</span>
+          </div>
+          <div class="change-title">誤字の修正（公式文書として無効リスク）</div>
+        </div>
+      </div>
+      <div class="change-body">
+        <div class="compare-grid">
+          <div class="compare-col current">
+            <div class="compare-col-label">現状（誤字あり）</div>
+            <p>「本契約の性質を雇用契約に<strong>変ftっjっh更</strong>するものではない」</p>
+          </div>
+          <div class="compare-col desired">
+            <div class="compare-col-label">要望（修正後）</div>
+            <p>「本契約の性質を雇用契約に<strong>変更</strong>するものではない」</p>
+          </div>
+        </div>
+        <div class="change-block">
+          <div class="block-label">理由</div>
+          <div class="block-content">公式文書の誤字は解釈の余地を生むため、署名前に必ず修正依頼を行う。これは交渉ではなく事務的な修正依頼として伝えること。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr />
+
+  <!-- 優先度：高 -->
+  <section id="high-priority">
+    <p class="section-label">優先度 高</p>
+    <div style="display:grid; gap:var(--space-5);">
+
+      <!-- 手取り保証 -->
+      <div class="change-item priority-high" id="take-home">
+        <div class="change-header">
+          <div class="change-header-left">
+            <div class="change-meta">
+              <span class="badge badge-high">高</span>
+              <span class="change-article">第5条1・2項</span>
+            </div>
+            <div class="change-title">基本報酬12万円を手取り額として保証</div>
+          </div>
+        </div>
+        <div class="change-body">
+          <div class="change-block">
+            <div class="block-label">現状の問題</div>
+            <div class="block-content">
+              「月額120,000円（消費税別）」と記載されているが、業務委託報酬には<strong>源泉徴収（10.21%）</strong>が適用される場合がある。そのままだと実際の振込額は約<strong>107,748円</strong>になり、12万円を受け取れない。
+            </div>
+          </div>
+          <div class="compare-grid">
+            <div class="compare-col current">
+              <div class="compare-col-label">現状の支払フロー</div>
+              <p>甲 → 支払 120,000円<br>源泉徴収 −12,252円<br>→ 手取り <strong>107,748円</strong></p>
+            </div>
+            <div class="compare-col desired">
+              <div class="compare-col-label">要望後の支払フロー</div>
+              <p>甲 → 支払 約133,600円<br>源泉徴収 −13,600円<br>→ 手取り <strong>120,000円</strong></p>
+            </div>
+          </div>
+          <div class="proposed">
+            月額120,000円は乙の手取り額とし、源泉徴収が必要な場合は甲が源泉徴収相当額を上乗せした額を支払総額とする。
+          </div>
+          <div class="change-block">
+            <div class="block-label">補足</div>
+            <div class="block-content">上乗せ後の甲の支払総額は約<strong>133,600円</strong>（120,000 ÷ 0.8979）。確定申告は乙が自分で行う。</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 13万円引き上げ -->
+      <div class="change-item priority-high" id="salary-up">
+        <div class="change-header">
+          <div class="change-header-left">
+            <div class="change-meta">
+              <span class="badge badge-high">高</span>
+              <span class="change-article">第5条1項</span>
+            </div>
+            <div class="change-title">基本報酬を月額13万円に引き上げ</div>
+          </div>
+        </div>
+        <div class="change-body">
+          <div class="change-block">
+            <div class="block-label">現状の問題</div>
+            <div class="block-content">
+              現在の月額120,000円は、業務実態（勤務時間外の稼働を含む）に対して低い。稼働時間の上限が定められていない状態での固定額であるため、実質的な時給が下がるリスクがある。
+            </div>
+          </div>
+          <div class="change-block">
+            <div class="block-label">交渉の根拠</div>
+            <div class="block-content">
+              <strong>①</strong> 時間外稼働を含む実態に見合った報酬水準への調整<br>
+              <strong>②</strong> 稼働時間上限の明記（80時間）とセットで提案することで、甲にとっても合理的な交渉として提示できる
+            </div>
+          </div>
+          <div class="compare-grid">
+            <div class="compare-col current">
+              <div class="compare-col-label">現状</div>
+              <p>月額 <strong>120,000円</strong>（税別）</p>
+            </div>
+            <div class="compare-col desired">
+              <div class="compare-col-label">要望</div>
+              <p>月額 <strong>130,000円</strong>（手取り保証込み）</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 稼働時間上限 -->
+      <div class="change-item priority-high" id="work-hours">
+        <div class="change-header">
+          <div class="change-header-left">
+            <div class="change-meta">
+              <span class="badge badge-high">高</span>
+              <span class="change-article">第5条3項</span>
+            </div>
+            <div class="change-title">月間稼働時間の上限（80時間）を明記</div>
+          </div>
+        </div>
+        <div class="change-body">
+          <div class="change-block">
+            <div class="block-label">現状の問題</div>
+            <div class="block-content">
+              「基本報酬は時間給ではない」と明記されており、業務委託として法的には正しいが、これは同時に<strong>「何時間働かせても月12万円」が成立する構造</strong>を意味する。実際には勤務時間外にも稼働しており、案件が増えた場合、実質的な時給が際限なく下がるリスクがある。
+            </div>
+          </div>
+          <div class="proposed">
+            月間の標準稼働時間は80時間とし、甲が80時間を超える稼働を求める場合は甲乙協議のうえ追加報酬を定めなければならない。
+          </div>
+          <div class="change-block">
+            <div class="block-label">80時間の根拠</div>
+            <div class="block-content">1日約4時間 × 20日 = 80時間。実態に合った水準として設定。40時間（1日2時間）では実態に合わない。</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 対象案件確認 -->
+      <div class="change-item priority-high" id="project-check">
+        <div class="change-header">
+          <div class="change-header-left">
+            <div class="change-meta">
+              <span class="badge badge-high">高</span>
+              <span class="change-article">第7条</span>
+            </div>
+            <div class="change-title">対象案件の事前確認プロセスを条文化</div>
+          </div>
+        </div>
+        <div class="change-body">
+          <div class="change-block">
+            <div class="block-label">現状の問題</div>
+            <div class="block-content">
+              第7条は「疑義があれば誠実に協議」という設計になっているが、<strong>「対象案件かどうかを事前に確認するプロセス」が条文上存在しない</strong>。案件開始後に「あれは対象案件ではなかった」と言われた場合、成果報酬を請求しにくくなる。協議が決裂した場合の解決手段も記載がない。
+            </div>
+          </div>
+          <div class="proposed">
+            案件開始時に、甲は乙1および乙2に対し、当該案件が対象案件に該当するか否かを書面または電磁的方法により通知する。甲が通知を行わない場合、乙1または乙2が対象案件と主張したときは対象案件と推定する。
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr />
+
+  <!-- 優先度：中 -->
+  <section id="mid-priority">
+    <p class="section-label">優先度 中</p>
+    <div style="display:grid; gap:var(--space-5);">
+
+      <!-- 個別責任 -->
+      <div class="change-item priority-mid" id="liability">
+        <div class="change-header">
+          <div class="change-header-left">
+            <div class="change-meta">
+              <span class="badge badge-mid">中</span>
+              <span class="change-article">全条文（乙1・乙2連名部分）</span>
+            </div>
+            <div class="change-title">乙1・乙2の個別責任の明確化と三者協議の設置</div>
+          </div>
+        </div>
+        <div class="change-body">
+          <div class="change-block">
+            <div class="block-label">現状の問題</div>
+            <div class="block-content">
+              契約全体が「乙1および乙2」としてまとめて記載されており、一方の行為について他方が責任を負うかどうかが不明確。成果報酬の分配（第6条2項）が「原則2分の1ずつ」とされており、<strong>貢献度に差がある案件でも自動的に折半</strong>になる。
+            </div>
+          </div>
+          <div class="proposed" style="margin-bottom:var(--space-3);">
+            乙1および乙2の本契約上の義務は、特段の合意なき限り各自独立して負うものとし、一方の行為について他方は責任を負わない。
+          </div>
+          <div class="proposed">
+            乙1と乙2の間で責任の帰属または分担について争いが生じた場合、甲を含む三者協議を速やかに開催する。三者協議においても合意に至らない場合、外部の弁護士等の中立的専門家の意見を求めることができる。なお、三者協議における甲の役割は意見の提示にとどまり、最終的な決定は乙1および乙2の協議による。
+          </div>
+        </div>
+      </div>
+
+      <!-- 遅延損害金 -->
+      <div class="change-item priority-mid" id="late-fee">
+        <div class="change-header">
+          <div class="change-header-left">
+            <div class="change-meta">
+              <span class="badge badge-mid">中</span>
+              <span class="change-article">第5条・第6条</span>
+            </div>
+            <div class="change-title">支払遅延時の遅延損害金（年14.6%）を明記</div>
+          </div>
+        </div>
+        <div class="change-body">
+          <div class="change-block">
+            <div class="block-label">現状の問題</div>
+            <div class="block-content">
+              支払期日は定められているが、甲が遅延した場合の損害金の規定がない。法定利率（年3%）は適用されるが<strong>明記がないと請求しにくい</strong>。
+            </div>
+          </div>
+          <div class="proposed">
+            甲が支払期日を超えて報酬の支払を怠った場合、遅滞額に対し年率14.6%の割合による遅延損害金を付して支払う。
+          </div>
+          <div class="change-block">
+            <div class="block-label">年14.6%の根拠</div>
+            <div class="block-content">商取引で一般的な水準（日割り0.04%）。法定利率（年3%）よりも高く設定することで、支払遅延への抑止力となる。</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr />
+
+  <!-- 変更不要箇所 -->
+  <section id="ok-items">
+    <p class="section-label">変更不要 — 乙に有利な条文</p>
+    <p>以下の条文はすでに乙（井辻・荒井）側に有利な内容です。交渉の際に変更を求める必要はありません。</p>
+    <div class="table-wrap" style="margin-top:var(--space-4);">
+      <table>
+        <thead>
+          <tr>
+            <th>条文</th>
+            <th>内容</th>
+            <th>判断理由</th>
+          </tr>
+        </thead>
+        <tbody class="ok-row">
+          <tr>
+            <td>第9条1項</td>
+            <td>知的財産権が乙に帰属</td>
+            <td>乙に非常に有利。変更不要。</td>
+          </tr>
+          <tr>
+            <td>第9条6項</td>
+            <td>AI機能・成果物の持ち出しOK</td>
+            <td>確認済み・合意済み。問題なし。</td>
+          </tr>
+          <tr>
+            <td>第11条4項</td>
+            <td>甲は乙の既存知財を秘密情報と主張できない</td>
+            <td>乙に有利。変更不要。</td>
+          </tr>
+          <tr>
+            <td>第12条1・4項</td>
+            <td>競業避止が採用支援のみに限定</td>
+            <td>AI事業は無制限。問題なし。</td>
+          </tr>
+          <tr>
+            <td>第18条2項</td>
+            <td>乙の損害賠償上限＝成果報酬総額</td>
+            <td>乙側の責任を限定。有利な設計。</td>
+          </tr>
+          <tr>
+            <td>第6条6項</td>
+            <td>成果報酬は契約終了後も存続</td>
+            <td>乙に非常に有利。変更不要。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr />
+
+  <!-- 全体所感 -->
+  <section id="summary">
+    <p class="section-label">全体所感</p>
+    <div style="background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:var(--space-6);box-shadow:var(--shadow-sm);">
+      <p style="color:var(--text);font-size:var(--text-sm);margin:0;">
+        この契約書は全体的に<strong>乙（井辻・荒井）側に有利な設計</strong>になっている。知財帰属・AI機能持ち出し・控除禁止・成果報酬の永続性など、通常の業務委託では甲側有利になる部分が逆になっている。不安の大部分は「初めての契約書だから」という経験の少なさに由来する部分が大きく、内容自体は悪くない。<br><br>
+        上記の変更要望点を交渉・確認したうえで署名するのが適切と判断する。
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  業務委託契約書 変更要望点 — 作成日：2026-03-23 &nbsp;|&nbsp; 対象契約書：業務委託契約書_本文_2026-03-21.pdf
+</footer>
+
+</body>
+</html>
