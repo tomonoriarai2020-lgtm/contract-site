@@ -6,428 +6,134 @@
   <title>内部用 — 面談チートシート 2026-03-23</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --text-xs:   0.618rem;
-      --text-sm:   0.786rem;
-      --text-base: 1rem;
-      --text-md:   1.236rem;
-      --text-lg:   1.618rem;
-      --text-xl:   2.618rem;
+      --text-xs:0.618rem;--text-sm:0.786rem;--text-base:1rem;--text-md:1.236rem;--text-lg:1.618rem;--text-xl:2.618rem;
+      --leading:1.618;--leading-tight:1.236;
+      --space-1:0.309rem;--space-2:0.5rem;--space-3:0.809rem;--space-4:1rem;--space-5:1.618rem;--space-6:2.618rem;--space-7:4.236rem;
+      --container-md:971px;--content-col:61.8%;--sidebar-col:38.2%;
+      --radius-sm:6px;--radius-md:10px;--radius-lg:14px;
+      --shadow-sm:0 1px 3px rgba(0,0,0,0.08);--shadow-md:0 4px 16px rgba(0,0,0,0.12);
+      --bg:#0b1020;--surface:#141b34;--text:#e6e8ef;--sub:#93a0bf;--accent:#4f7cff;--line:#253156;
+      --s-color:#f59e0b;--a-color:#3b82f6;--b-color:#6b7280;--fix-color:#10b981;--danger:#ef4444;
+    }
+    body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic",sans-serif;font-size:var(--text-base);line-height:var(--leading);color:var(--text);background:var(--bg); }
+    nav { background:var(--surface);border-bottom:1px solid var(--line);padding:var(--space-3) var(--space-5);position:sticky;top:0;z-index:100; }
+    .nav-inner { max-width:var(--container-md);margin:0 auto;display:flex;align-items:center;justify-content:space-between; }
+    .nav-logo { font-size:var(--text-sm);font-weight:700;color:var(--danger);letter-spacing:0.06em; }
+    .nav-badge { background:#1e3a1e;color:#4ade80;font-size:var(--text-xs);font-weight:700;padding:var(--space-1) var(--space-3);border-radius:999px;letter-spacing:0.04em; }
+    .nav-links { display:flex;gap:var(--space-4);list-style:none; }
+    .nav-links a { font-size:var(--text-xs);color:var(--sub);text-decoration:none; }
+    .nav-links a:hover { color:var(--accent); }
+    @media(max-width:768px){.nav-links{display:none;}}
+    .hero { max-width:var(--container-md);margin:0 auto;padding:var(--space-6) var(--space-5) var(--space-5); }
+    .kicker { font-size:var(--text-xs);font-weight:700;letter-spacing:0.08em;color:var(--danger);margin-bottom:var(--space-2);text-transform:uppercase; }
+    h1 { font-size:clamp(var(--text-lg),3vw,var(--text-xl));line-height:var(--leading-tight);color:var(--text);margin-bottom:var(--space-2); }
+    .lead { font-size:var(--text-sm);color:var(--sub); }
+    main { max-width:var(--container-md);margin:0 auto;padding:0 var(--space-5) var(--space-7);display:grid;gap:var(--space-6); }
+    .section-label { font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--sub);margin-bottom:var(--space-4); }
+    h2 { font-size:var(--text-lg);line-height:var(--leading-tight);margin-bottom:var(--space-4); }
+    h3 { font-size:var(--text-base);font-weight:700;margin-bottom:var(--space-3); }
+    .card { background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:var(--space-5);box-shadow:var(--shadow-sm); }
+    hr { border:none;border-top:1px solid var(--line); }
+    p { font-size:var(--text-sm);line-height:var(--leading);color:var(--sub);margin-top:var(--space-3); }
+    strong { color:var(--text); }
 
-      --leading:       1.618;
-      --leading-tight: 1.236;
+    /* ライトメッセージ */
+    .light-box { background:#1a1400;border:1px solid #78350f;border-radius:var(--radius-lg);padding:var(--space-5);margin-bottom:var(--space-5); }
+    .light-box-label { font-size:var(--text-xs);font-weight:700;color:#fbbf24;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:var(--space-3); }
+    .light-box p { color:#fde68a;margin:0;margin-bottom:var(--space-3); }
+    .light-box p:last-child { margin-bottom:0; }
+    .light-agreed { display:flex;flex-wrap:wrap;gap:var(--space-2);margin-top:var(--space-3); }
+    .light-tag { font-size:var(--text-xs);padding:var(--space-1) var(--space-3);border-radius:999px;font-weight:700; }
+    .light-tag.ok { background:#052e16;color:#4ade80; }
+    .light-tag.warn { background:#451a03;color:#fbbf24; }
 
-      --space-1: 0.309rem;
-      --space-2: 0.5rem;
-      --space-3: 0.809rem;
-      --space-4: 1rem;
-      --space-5: 1.618rem;
-      --space-6: 2.618rem;
-      --space-7: 4.236rem;
+    /* 優先度 */
+    .priority-table { display:grid;gap:var(--space-3); }
+    .priority-row { display:grid;grid-template-columns:80px 1fr auto;gap:var(--space-4);align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-md);padding:var(--space-3) var(--space-4); }
+    .priority-row.fix { border-left:3px solid var(--fix-color); }
+    .priority-row.s { border-left:3px solid var(--s-color); }
+    .priority-row.a { border-left:3px solid var(--a-color); }
+    .priority-row.b { border-left:3px solid var(--b-color); }
+    .p-badge { font-size:var(--text-xs);font-weight:700;padding:var(--space-1) var(--space-2);border-radius:var(--radius-sm);text-align:center; }
+    .p-fix { background:#052e16;color:#4ade80; }
+    .p-s { background:#451a03;color:#fbbf24; }
+    .p-a { background:#1e3a5f;color:#93c5fd; }
+    .p-b { background:#1f2937;color:#9ca3af; }
+    .p-label { font-size:var(--text-sm);color:var(--text);font-weight:600; }
+    .p-note { font-size:var(--text-xs);color:var(--sub); }
 
-      --container-md: 971px;
-      --content-col:  61.8%;
-      --sidebar-col:  38.2%;
+    /* 数字 */
+    .num-grid { display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4); }
+    @media(max-width:600px){.num-grid{grid-template-columns:1fr;}}
+    .num-card { background:#0d1730;border:1px solid var(--line);border-radius:var(--radius-md);padding:var(--space-4) var(--space-5); }
+    .num-card-label { font-size:var(--text-xs);color:var(--sub);margin-bottom:var(--space-3);font-weight:700;letter-spacing:0.04em; }
+    .num-row { display:flex;justify-content:space-between;align-items:baseline;font-size:var(--text-sm);padding:var(--space-1) 0;border-bottom:1px solid var(--line);color:var(--sub); }
+    .num-row:last-child { border-bottom:none; }
+    .num-row strong { color:var(--accent);font-weight:700; }
+    .num-row.hl strong { color:var(--s-color);font-size:var(--text-md); }
 
-      --radius-sm: 6px;
-      --radius-md: 10px;
-      --radius-lg: 14px;
+    /* パターン */
+    .pattern-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-4); }
+    @media(max-width:700px){.pattern-grid{grid-template-columns:1fr;}}
+    .pattern-card { border-radius:var(--radius-lg);padding:var(--space-4) var(--space-5);border:1px solid; }
+    .pattern-card.best { background:#052e16;border-color:#166534; }
+    .pattern-card.real { background:#0c1a3a;border-color:#1d4ed8; }
+    .pattern-card.minimum { background:#1c1917;border-color:#57534e; }
+    .pattern-label { font-size:var(--text-xs);font-weight:700;letter-spacing:0.06em;margin-bottom:var(--space-3); }
+    .pattern-card.best .pattern-label { color:#4ade80; }
+    .pattern-card.real .pattern-label { color:#93c5fd; }
+    .pattern-card.minimum .pattern-label { color:#a8a29e; }
+    .pattern-card ul { list-style:none;display:grid;gap:var(--space-2); }
+    .pattern-card li { font-size:var(--text-xs);color:var(--text);display:flex;gap:var(--space-2);align-items:flex-start; }
+    .pattern-card li::before { content:"・";color:var(--sub); }
 
-      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
-      --shadow-md: 0 4px 16px rgba(0,0,0,0.12);
+    /* 切り返し */
+    .comeback-list { display:grid;gap:var(--space-4); }
+    .comeback-item { background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden; }
+    .comeback-trigger { background:#1a1a2e;padding:var(--space-3) var(--space-5);font-size:var(--text-sm);font-weight:700;color:var(--danger);border-bottom:1px solid var(--line); }
+    .comeback-response { padding:var(--space-4) var(--space-5);font-size:var(--text-sm);color:var(--text);line-height:var(--leading); }
+    .comeback-response::before { content:"→ ";color:var(--fix-color);font-weight:700; }
 
-      --bg:      #0b1020;
-      --surface: #141b34;
-      --text:    #e6e8ef;
-      --sub:     #93a0bf;
-      --accent:  #4f7cff;
-      --line:    #253156;
+    /* 条文対照表 */
+    .clause-table { display:grid;gap:var(--space-4); }
+    .clause-item { background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden; }
+    .clause-header { display:flex;gap:var(--space-3);align-items:center;padding:var(--space-3) var(--space-5);background:#0d1730;border-bottom:1px solid var(--line); }
+    .clause-num { font-size:var(--text-xs);font-weight:700;color:var(--sub); }
+    .clause-title { font-size:var(--text-sm);font-weight:700;color:var(--text); }
+    .clause-body { padding:var(--space-4) var(--space-5);display:grid;gap:var(--space-3); }
+    .clause-block-label { font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--sub);margin-bottom:var(--space-1); }
+    .clause-block-content { font-size:var(--text-sm);line-height:var(--leading);color:var(--text); }
+    .clause-current { background:#1a0d0d;border:1px solid #450a0a;border-radius:var(--radius-md);padding:var(--space-3) var(--space-4);font-size:var(--text-sm);color:#fca5a5;line-height:var(--leading); }
+    .clause-proposed { background:#0d1730;border:1px solid var(--accent);border-radius:var(--radius-md);padding:var(--space-3) var(--space-4);font-size:var(--text-sm);color:var(--sub);line-height:var(--leading);font-style:italic; }
+    .clause-proposed::before { content:"変更案 ";font-style:normal;font-weight:700;color:var(--accent); }
 
-      --s-color: #f59e0b;
-      --a-color: #3b82f6;
-      --b-color: #6b7280;
-      --fix-color: #10b981;
-      --danger:  #ef4444;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-        "Hiragino Kaku Gothic ProN", "Hiragino Sans",
-        "Noto Sans JP", "Yu Gothic", sans-serif;
-      font-size: var(--text-base);
-      line-height: var(--leading);
-      color: var(--text);
-      background: var(--bg);
-    }
-
-    nav {
-      background: var(--surface);
-      border-bottom: 1px solid var(--line);
-      padding: var(--space-3) var(--space-5);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    .nav-inner {
-      max-width: var(--container-md);
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .nav-logo {
-      font-size: var(--text-sm);
-      font-weight: 700;
-      color: var(--danger);
-      letter-spacing: 0.06em;
-    }
-    .nav-badge {
-      background: #1e3a1e;
-      color: #4ade80;
-      font-size: var(--text-xs);
-      font-weight: 700;
-      padding: var(--space-1) var(--space-3);
-      border-radius: 999px;
-      letter-spacing: 0.04em;
-    }
-    .nav-links {
-      display: flex;
-      gap: var(--space-4);
-      list-style: none;
-    }
-    .nav-links a {
-      font-size: var(--text-xs);
-      color: var(--sub);
-      text-decoration: none;
-    }
-    .nav-links a:hover { color: var(--accent); }
-    @media (max-width: 768px) { .nav-links { display: none; } }
-
-    .hero {
-      max-width: var(--container-md);
-      margin: 0 auto;
-      padding: var(--space-6) var(--space-5) var(--space-5);
-    }
-    .kicker {
-      font-size: var(--text-xs);
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      color: var(--danger);
-      margin-bottom: var(--space-2);
-      text-transform: uppercase;
-    }
-    h1 {
-      font-size: clamp(var(--text-lg), 3vw, var(--text-xl));
-      line-height: var(--leading-tight);
-      color: var(--text);
-      margin-bottom: var(--space-2);
-    }
-    .lead { font-size: var(--text-sm); color: var(--sub); }
-
-    main {
-      max-width: var(--container-md);
-      margin: 0 auto;
-      padding: 0 var(--space-5) var(--space-7);
-      display: grid;
-      gap: var(--space-6);
-    }
-
-    .section-label {
-      font-size: var(--text-xs);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--sub);
-      margin-bottom: var(--space-4);
-    }
-
-    h2 {
-      font-size: var(--text-lg);
-      line-height: var(--leading-tight);
-      margin-bottom: var(--space-4);
-    }
-    h3 {
-      font-size: var(--text-base);
-      font-weight: 700;
-      margin-bottom: var(--space-3);
-    }
-
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      padding: var(--space-5);
-      box-shadow: var(--shadow-sm);
-    }
-
-    /* Priority table */
-    .priority-table {
-      display: grid;
-      gap: var(--space-3);
-    }
-    .priority-row {
-      display: grid;
-      grid-template-columns: 80px 1fr auto;
-      gap: var(--space-4);
-      align-items: center;
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-md);
-      padding: var(--space-3) var(--space-4);
-    }
-    .priority-row.fix  { border-left: 3px solid var(--fix-color); }
-    .priority-row.s    { border-left: 3px solid var(--s-color); }
-    .priority-row.a    { border-left: 3px solid var(--a-color); }
-    .priority-row.b    { border-left: 3px solid var(--b-color); }
-
-    .p-badge {
-      font-size: var(--text-xs);
-      font-weight: 700;
-      padding: var(--space-1) var(--space-2);
-      border-radius: var(--radius-sm);
-      text-align: center;
-    }
-    .p-fix  { background: #052e16; color: #4ade80; }
-    .p-s    { background: #451a03; color: #fbbf24; }
-    .p-a    { background: #1e3a5f; color: #93c5fd; }
-    .p-b    { background: #1f2937; color: #9ca3af; }
-
-    .p-label { font-size: var(--text-sm); color: var(--text); font-weight: 600; }
-    .p-note  { font-size: var(--text-xs); color: var(--sub); }
-
-    /* Numbers grid */
-    .num-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-4);
-    }
-    @media (max-width: 600px) { .num-grid { grid-template-columns: 1fr; } }
-    .num-card {
-      background: #0d1730;
-      border: 1px solid var(--line);
-      border-radius: var(--radius-md);
-      padding: var(--space-4) var(--space-5);
-    }
-    .num-card-label {
-      font-size: var(--text-xs);
-      color: var(--sub);
-      margin-bottom: var(--space-3);
-      font-weight: 700;
-      letter-spacing: 0.04em;
-    }
-    .num-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      font-size: var(--text-sm);
-      padding: var(--space-1) 0;
-      border-bottom: 1px solid var(--line);
-      color: var(--sub);
-    }
-    .num-row:last-child { border-bottom: none; }
-    .num-row strong { color: var(--accent); font-weight: 700; }
-    .num-row.highlight strong { color: var(--s-color); font-size: var(--text-md); }
-
-    /* Pattern cards */
-    .pattern-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: var(--space-4);
-    }
-    @media (max-width: 700px) { .pattern-grid { grid-template-columns: 1fr; } }
-    .pattern-card {
-      border-radius: var(--radius-lg);
-      padding: var(--space-4) var(--space-5);
-      border: 1px solid;
-    }
-    .pattern-card.best    { background: #052e16; border-color: #166534; }
-    .pattern-card.real    { background: #0c1a3a; border-color: #1d4ed8; }
-    .pattern-card.minimum { background: #1c1917; border-color: #57534e; }
-    .pattern-label {
-      font-size: var(--text-xs);
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      margin-bottom: var(--space-3);
-    }
-    .pattern-card.best    .pattern-label { color: #4ade80; }
-    .pattern-card.real    .pattern-label { color: #93c5fd; }
-    .pattern-card.minimum .pattern-label { color: #a8a29e; }
-    .pattern-card ul {
-      list-style: none;
-      display: grid;
-      gap: var(--space-2);
-    }
-    .pattern-card li {
-      font-size: var(--text-xs);
-      color: var(--text);
-      display: flex;
-      gap: var(--space-2);
-      align-items: flex-start;
-    }
-    .pattern-card li::before { content: "・"; color: var(--sub); }
-
-    /* Comeback section */
-    .comeback-list {
-      display: grid;
-      gap: var(--space-4);
-    }
-    .comeback-item {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-    }
-    .comeback-trigger {
-      background: #1a1a2e;
-      padding: var(--space-3) var(--space-5);
-      font-size: var(--text-sm);
-      font-weight: 700;
-      color: var(--danger);
-      border-bottom: 1px solid var(--line);
-    }
-    .comeback-response {
-      padding: var(--space-4) var(--space-5);
-      font-size: var(--text-sm);
-      color: var(--text);
-      line-height: var(--leading);
-    }
-    .comeback-response::before {
-      content: "→ ";
-      color: var(--fix-color);
-      font-weight: 700;
-    }
-
-    /* Detail section */
-    .detail-item {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-    }
-    .detail-header {
-      display: flex;
-      gap: var(--space-3);
-      align-items: center;
-      padding: var(--space-4) var(--space-5);
-      border-bottom: 1px solid var(--line);
-    }
-    .detail-title { font-size: var(--text-sm); font-weight: 700; color: var(--text); }
-    .detail-article { font-size: var(--text-xs); color: var(--sub); }
-    .detail-body {
-      padding: var(--space-4) var(--space-5);
-      display: grid;
-      gap: var(--space-3);
-    }
-    .detail-block-label {
-      font-size: var(--text-xs);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--sub);
-      margin-bottom: var(--space-1);
-    }
-    .detail-block-content {
-      font-size: var(--text-sm);
-      line-height: var(--leading);
-      color: var(--text);
-    }
-    .clause-box {
-      background: #0d1730;
-      border: 1px solid var(--accent);
-      border-radius: var(--radius-md);
-      padding: var(--space-3) var(--space-4);
-      font-size: var(--text-xs);
-      color: var(--sub);
-      line-height: var(--leading);
-      font-style: italic;
-    }
-    .clause-box::before {
-      content: "追加文言案 ";
-      font-style: normal;
-      font-weight: 700;
-      color: var(--accent);
-    }
+    /* 台本 */
+    .script-section { border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--line); }
+    .script-phase { border-bottom:1px solid var(--line); }
+    .script-phase:last-child { border-bottom:none; }
+    .script-phase-header { display:flex;gap:var(--space-4);align-items:center;padding:var(--space-3) var(--space-5);background:#0d1730; }
+    .script-num { width:24px;height:24px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:var(--text-xs);font-weight:700;color:white;flex-shrink:0; }
+    .script-phase-title { font-size:var(--text-sm);font-weight:700;color:var(--text); }
+    .script-body { padding:var(--space-4) var(--space-5);background:var(--surface); }
+    .script-body p { font-size:var(--text-sm);line-height:var(--leading);color:var(--sub);margin-bottom:var(--space-3); }
+    .script-body p:last-child { margin-bottom:0; }
+    .script-body strong { color:var(--text); }
+    .script-quote { background:#0d1730;border-left:3px solid var(--accent);padding:var(--space-3) var(--space-4);border-radius:0 var(--radius-md) var(--radius-md) 0;font-size:var(--text-sm);color:#c7d2fe;line-height:var(--leading);margin-bottom:var(--space-3); }
 
     /* Todo */
-    .todo-list {
-      display: grid;
-      gap: var(--space-3);
-    }
-    .todo-item {
-      display: flex;
-      gap: var(--space-3);
-      align-items: flex-start;
-      font-size: var(--text-sm);
-      color: var(--text);
-      line-height: var(--leading);
-    }
-    .todo-box {
-      flex-shrink: 0;
-      width: 18px;
-      height: 18px;
-      border: 2px solid var(--sub);
-      border-radius: var(--radius-sm);
-      margin-top: 3px;
-    }
+    .todo-list { display:grid;gap:var(--space-3); }
+    .todo-item { display:flex;gap:var(--space-3);align-items:flex-start;font-size:var(--text-sm);color:var(--text);line-height:var(--leading); }
+    .todo-box { flex-shrink:0;width:18px;height:18px;border:2px solid var(--sub);border-radius:var(--radius-sm);margin-top:3px; }
 
-    /* Script */
-    .script-section {
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      border: 1px solid var(--line);
-    }
-    .script-phase {
-      border-bottom: 1px solid var(--line);
-    }
-    .script-phase:last-child { border-bottom: none; }
-    .script-phase-header {
-      display: flex;
-      gap: var(--space-4);
-      align-items: center;
-      padding: var(--space-3) var(--space-5);
-      background: #0d1730;
-      cursor: default;
-    }
-    .script-num {
-      width: 24px;
-      height: 24px;
-      background: var(--accent);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: var(--text-xs);
-      font-weight: 700;
-      color: white;
-      flex-shrink: 0;
-    }
-    .script-phase-title { font-size: var(--text-sm); font-weight: 700; color: var(--text); }
-    .script-body {
-      padding: var(--space-4) var(--space-5);
-      background: var(--surface);
-    }
-    .script-body p {
-      font-size: var(--text-sm);
-      line-height: var(--leading);
-      color: var(--sub);
-      margin-bottom: var(--space-3);
-    }
-    .script-body p:last-child { margin-bottom: 0; }
-    .script-body strong { color: var(--text); }
+    /* 時間配分 */
+    .timeline { display:grid;gap:var(--space-2); }
+    .tl-row { display:grid;grid-template-columns:80px 1fr;gap:var(--space-3);align-items:start;font-size:var(--text-sm); }
+    .tl-time { color:var(--accent);font-weight:700;font-variant-numeric:tabular-nums; }
+    .tl-item { color:var(--text); }
+    .tl-item.main { color:var(--s-color);font-weight:700; }
 
-    hr { border: none; border-top: 1px solid var(--line); }
-    p { font-size: var(--text-sm); line-height: var(--leading); color: var(--sub); margin-top: var(--space-3); }
-    strong { color: var(--text); }
-
-    footer {
-      border-top: 1px solid var(--line);
-      padding: var(--space-5);
-      text-align: center;
-      font-size: var(--text-xs);
-      color: var(--sub);
-      margin-top: var(--space-6);
-    }
+    footer { border-top:1px solid var(--line);padding:var(--space-5);text-align:center;font-size:var(--text-xs);color:var(--sub);margin-top:var(--space-6); }
   </style>
 </head>
 <body>
@@ -436,83 +142,92 @@
   <div class="nav-inner">
     <span class="nav-logo">🔒 内部用 — 当日手元資料</span>
     <ul class="nav-links">
+      <li><a href="#light">ライト確認</a></li>
       <li><a href="#priority">優先度</a></li>
       <li><a href="#numbers">数字</a></li>
-      <li><a href="#patterns">交渉パターン</a></li>
-      <li><a href="#comebacks">切り返し</a></li>
+      <li><a href="#patterns">パターン</a></li>
+      <li><a href="#clause">条文対照</a></li>
       <li><a href="#script">台本</a></li>
-      <li><a href="#todo">面談後</a></li>
+      <li><a href="#comebacks">切り返し</a></li>
     </ul>
-    <span class="nav-badge">2026-03-23 面談</span>
+    <span class="nav-badge">統合版 2026-03-23</span>
   </div>
 </nav>
 
 <div class="hero">
-  <p class="kicker">Internal Only — Do Not Share</p>
-  <h1>交渉チートシート</h1>
-  <p class="lead">当日の手元用。優先度・数字・切り返しをまとめています。</p>
+  <p class="kicker">Internal Only — 荒井＋ライト 統合版</p>
+  <h1>面談チートシート</h1>
+  <p class="lead">ライトのレビュー反映済み・統合変更要望ベース。当日の手元用。</p>
 </div>
 
 <main>
 
+  <!-- ライトのメッセージ -->
+  <section id="light">
+    <p class="section-label">ライトのレビュー（重要）</p>
+    <div class="light-box">
+      <div class="light-box-label">ライトが合意した内容</div>
+      <div class="light-agreed">
+        <span class="light-tag ok">手取り保証 ✓</span>
+        <span class="light-tag ok">対象案件の事前確認 ✓</span>
+        <span class="light-tag ok">個別責任の明記 ✓</span>
+        <span class="light-tag ok">遅延損害金（修正あり） ✓</span>
+        <span class="light-tag warn">稼働時間：書き方を変える ⚠</span>
+        <span class="light-tag warn">遅延損害金：14.6% → 5% ⚠</span>
+      </div>
+      <p style="margin-top:var(--space-4);">
+        <strong>稼働時間について：</strong>「月80時間を上限」という書き方は業務委託っぽくないリスクがある。代わりに「月80時間程度を想定して設定、大幅超過時は追加報酬を協議」にする。
+      </p>
+      <p>
+        <strong>遅延損害金について：</strong>14.6%はインターンとしてやりすぎ。最初の2ヶ月は年5%、2ヶ月経過後は年14.6%という段階制にする。
+      </p>
+    </div>
+  </section>
+
+  <hr />
+
   <!-- 優先度 -->
   <section id="priority">
-    <p class="section-label">優先度マップ</p>
+    <p class="section-label">優先度マップ（統合版）</p>
     <div class="priority-table">
       <div class="priority-row fix">
         <span class="p-badge p-fix">必須</span>
-        <div>
-          <div class="p-label">誤字修正（第8条3項）</div>
-          <div class="p-note">「変ftっjっh更」→「変更」— NOはありえない</div>
-        </div>
+        <div><div class="p-label">誤字修正（第8条3項）</div><div class="p-note">「変ftっjっh更」→「変更」— NOはありえない</div></div>
         <div class="p-note">第8条3項</div>
       </div>
       <div class="priority-row s">
         <span class="p-badge p-s">S</span>
-        <div>
-          <div class="p-label">手取り保証 / 13万引き上げ</div>
-          <div class="p-note">ここを取りに行く。まず13万、渋られたら手取り12万保証</div>
-        </div>
-        <div class="p-note">第5条</div>
-      </div>
-      <div class="priority-row s">
-        <span class="p-badge p-s">S</span>
-        <div>
-          <div class="p-label">対象案件の事前確認プロセス</div>
-          <div class="p-note">生命線。必ず通す</div>
-        </div>
+        <div><div class="p-label">対象案件の事前確認プロセス</div><div class="p-note">生命線。ライト・荒井両方が最重要視</div></div>
         <div class="p-note">第7条</div>
       </div>
       <div class="priority-row a">
         <span class="p-badge p-a">A</span>
-        <div>
-          <div class="p-label">月間稼働時間80時間上限</div>
-          <div class="p-note">代替案：「超過時の協議義務」でもOK</div>
-        </div>
-        <div class="p-note">第5条3項</div>
+        <div><div class="p-label">基本報酬13万円に引き上げ</div><div class="p-note">通らなければ手取り12万保証へ切り替え</div></div>
+        <div class="p-note">第5条1項</div>
       </div>
       <div class="priority-row a">
         <span class="p-badge p-a">A</span>
-        <div>
-          <div class="p-label">成果報酬率25%</div>
-          <div class="p-note">最低20%は死守</div>
-        </div>
+        <div><div class="p-label">手取り保証（源泉徴収上乗せ）</div><div class="p-note">13万が通らない場合の必須代替案</div></div>
+        <div class="p-note">第5条</div>
+      </div>
+      <div class="priority-row a">
+        <span class="p-badge p-a">A</span>
+        <div><div class="p-label">稼働時間：月80時間想定 + 超過時協議義務</div><div class="p-note">「上限」ではなく「想定+大幅超過時協議」の書き方で</div></div>
+        <div class="p-note">第5条3項</div>
+      </div>
+      <div class="priority-row b">
+        <span class="p-badge p-b">B</span>
+        <div><div class="p-label">成果報酬率25%への引き上げ</div><div class="p-note">最低20%維持が死守ライン</div></div>
         <div class="p-note">第6条1項</div>
       </div>
       <div class="priority-row b">
         <span class="p-badge p-b">B</span>
-        <div>
-          <div class="p-label">遅延損害金（年14.6%）</div>
-          <div class="p-note">通れば嬉しい</div>
-        </div>
+        <div><div class="p-label">遅延損害金（年5%→2ヶ月超で14.6%）</div><div class="p-note">ライト修正案。14.6%の即時適用はやりすぎ</div></div>
         <div class="p-note">第5・6条</div>
       </div>
       <div class="priority-row b">
         <span class="p-badge p-b">B</span>
-        <div>
-          <div class="p-label">乙1・乙2の個別責任</div>
-          <div class="p-note">時間があれば</div>
-        </div>
+        <div><div class="p-label">乙1・乙2の個別責任明確化</div><div class="p-note">時間があれば。万が一の保険</div></div>
         <div class="p-note">全条文</div>
       </div>
     </div>
@@ -522,24 +237,24 @@
 
   <!-- 数字 -->
   <section id="numbers">
-    <p class="section-label">報酬の数字</p>
+    <p class="section-label">報酬の数字（手元に置く）</p>
     <div class="num-grid">
       <div class="num-card">
         <div class="num-card-label">現行 12万円のケース</div>
         <div class="num-row"><span>額面</span><strong>120,000円</strong></div>
         <div class="num-row"><span>源泉徴収（10.21%）</span><span style="color:#ef4444;">−12,252円</span></div>
-        <div class="num-row highlight"><span>実際の手取り</span><strong>107,748円</strong></div>
-        <div class="num-row" style="margin-top:var(--space-3);"><span>手取り12万保証なら甲の支払総額</span><strong>約133,600円</strong></div>
+        <div class="num-row hl"><span>実際の手取り</span><strong>107,748円</strong></div>
+        <div class="num-row" style="margin-top:var(--space-3);"><span>手取り12万保証なら甲の支払額</span><strong>約133,600円</strong></div>
       </div>
       <div class="num-card">
         <div class="num-card-label">13万円交渉のケース</div>
         <div class="num-row"><span>額面</span><strong>130,000円</strong></div>
         <div class="num-row"><span>源泉徴収（10.21%）</span><span style="color:#ef4444;">−13,273円</span></div>
-        <div class="num-row highlight"><span>実際の手取り</span><strong>116,727円</strong></div>
-        <div class="num-row" style="margin-top:var(--space-3);"><span>手取り13万保証なら甲の支払総額</span><strong>約144,800円</strong></div>
+        <div class="num-row hl"><span>実際の手取り</span><strong>116,727円</strong></div>
+        <div class="num-row" style="margin-top:var(--space-3);"><span>手取り13万保証なら甲の支払額</span><strong>約144,800円</strong></div>
       </div>
     </div>
-    <p style="margin-top:var(--space-3);">源泉徴収率：10.21%（復興特別所得税含む）。確定申告は乙が自分で行う。</p>
+    <p style="margin-top:var(--space-3);">源泉徴収率：10.21%（復興特別所得税含む）。確定申告は乙が各自行う。</p>
   </section>
 
   <hr />
@@ -551,8 +266,9 @@
       <div class="pattern-card best">
         <div class="pattern-label">BEST CASE</div>
         <ul>
+          <li>誤字修正</li>
           <li>13万円（手取り保証込み）</li>
-          <li>稼働上限80時間 明記</li>
+          <li>稼働80時間想定 + 超過協議</li>
           <li>対象案件 事前確認</li>
           <li>成果報酬率 25%</li>
         </ul>
@@ -560,8 +276,9 @@
       <div class="pattern-card real">
         <div class="pattern-label">REALISTIC</div>
         <ul>
+          <li>誤字修正</li>
           <li>手取り12万保証</li>
-          <li>稼働上限（協議義務）</li>
+          <li>稼働80時間想定 + 超過協議</li>
           <li>対象案件 事前確認</li>
           <li>成果報酬率 20%維持</li>
         </ul>
@@ -569,10 +286,163 @@
       <div class="pattern-card minimum">
         <div class="pattern-label">MINIMUM LINE</div>
         <ul>
-          <li>誤字修正（必須）</li>
+          <li>誤字修正（絶対）</li>
           <li>手取り12万保証</li>
           <li>対象案件 事前確認</li>
         </ul>
+      </div>
+    </div>
+    <div style="margin-top:var(--space-4);background:#1a0d0d;border:1px solid #450a0a;border-radius:var(--radius-md);padding:var(--space-4);font-size:var(--text-xs);color:#fca5a5;font-weight:700;">
+      ⚠ 最低ラインを下回るなら再交渉。その場で署名しない。
+    </div>
+  </section>
+
+  <hr />
+
+  <!-- 時間配分 -->
+  <section id="timing">
+    <p class="section-label">面談の流れ（時間配分）</p>
+    <div class="card">
+      <div class="timeline">
+        <div class="tl-row"><span class="tl-time">00〜02分</span><span class="tl-item">冒頭・雰囲気作り（感謝から入る）</span></div>
+        <div class="tl-row"><span class="tl-time">02〜05分</span><span class="tl-item">誤字修正（すぐ終わる・軽く流す）</span></div>
+        <div class="tl-row"><span class="tl-time">05〜15分</span><span class="tl-item main">報酬（13万 or 手取り保証）★ メイン</span></div>
+        <div class="tl-row"><span class="tl-time">15〜20分</span><span class="tl-item">稼働時間（想定80h + 超過協議）</span></div>
+        <div class="tl-row"><span class="tl-time">20〜25分</span><span class="tl-item">対象案件の事前確認</span></div>
+        <div class="tl-row"><span class="tl-time">25〜30分</span><span class="tl-item">個別責任・遅延損害金（余裕があれば）</span></div>
+        <div class="tl-row"><span class="tl-time">30分〜</span><span class="tl-item">クロージング・次ステップ確認</span></div>
+      </div>
+    </div>
+  </section>
+
+  <hr />
+
+  <!-- 条文対照表 -->
+  <section id="clause">
+    <p class="section-label">条文対照表（養田さんと画面共有用）</p>
+    <div class="clause-table">
+
+      <div class="clause-item">
+        <div class="clause-header">
+          <span class="p-badge p-a">A</span>
+          <span class="clause-num">第5条1項</span>
+          <span class="clause-title">基本報酬の引き上げ</span>
+        </div>
+        <div class="clause-body">
+          <div><div class="clause-block-label">現行</div><div class="clause-current">甲は乙1および乙2に対し、各人につき月額<strong>120,000円</strong>（消費税別）を支払う。</div></div>
+          <div><div class="clause-block-label">変更案</div><div class="clause-proposed">甲は乙1および乙2に対し、各人につき月額<strong>130,000円</strong>（消費税別）を支払う。</div></div>
+          <div class="clause-block-content" style="font-size:var(--text-xs);color:var(--sub);">通らない場合 → 手取り保証（次項目）へ</div>
+        </div>
+      </div>
+
+      <div class="clause-item">
+        <div class="clause-header">
+          <span class="p-badge p-a">A</span>
+          <span class="clause-num">第5条</span>
+          <span class="clause-title">手取り保証（源泉徴収上乗せ）</span>
+        </div>
+        <div class="clause-body">
+          <div><div class="clause-block-label">現行</div><div class="clause-current">記載なし（源泉徴収10.21%が適用されると手取り約107,748円）</div></div>
+          <div><div class="clause-block-label">追加案</div><div class="clause-proposed">基本報酬は乙の手取り額とし、源泉徴収が必要な場合は甲が源泉徴収相当額を上乗せした額を支払総額とする。確定申告は乙1および乙2が各自行う。</div></div>
+        </div>
+      </div>
+
+      <div class="clause-item">
+        <div class="clause-header">
+          <span class="p-badge p-a">A</span>
+          <span class="clause-num">第5条3項</span>
+          <span class="clause-title">稼働時間の想定（ライト修正案）</span>
+        </div>
+        <div class="clause-body">
+          <div><div class="clause-block-label">現行</div><div class="clause-current">「基本報酬は、一定の稼働時間に対する時間給ではない」（時間制限の記載なし）</div></div>
+          <div><div class="clause-block-label">変更案（上限ではなく想定）</div><div class="clause-proposed">本報酬は月間80時間程度の対応を想定して設定されており、これを大幅に超える継続的対応が発生する場合は、甲乙協議のうえ追加報酬を定める。</div></div>
+          <div class="clause-block-content" style="font-size:var(--text-xs);color:var(--sub);">「上限」という言葉は使わない。業務委託らしさを維持するため。</div>
+        </div>
+      </div>
+
+      <div class="clause-item">
+        <div class="clause-header">
+          <span class="p-badge p-s">S</span>
+          <span class="clause-num">第7条</span>
+          <span class="clause-title">対象案件の事前確認プロセス</span>
+        </div>
+        <div class="clause-body">
+          <div><div class="clause-block-label">現行</div><div class="clause-current">「疑義がある場合、甲乙誠実に協議して定める。」（事前確認プロセスなし）</div></div>
+          <div><div class="clause-block-label">追加案（事前通知）</div><div class="clause-proposed">案件開始時に、甲は乙1および乙2に対し、当該案件が対象案件に該当するか否かを書面または電磁的方法により通知する。甲が通知を行わない場合、乙1または乙2が対象案件と主張したときは対象案件と推定する。</div></div>
+          <div><div class="clause-block-label">追加案（推定規定・ライト案）</div><div class="clause-proposed">次の各号のいずれかに該当する場合は、原則として対象案件と推定する。(1) 乙1または乙2が当該案件のAI機能の設計、実装または改良の中心的役割を担った場合 (2) 乙1または乙2が開発した成果物が当該案件に組み込まれている場合 (3) 乙1または乙2のワークフロー等が当該案件で利用されている場合</div></div>
+        </div>
+      </div>
+
+      <div class="clause-item">
+        <div class="clause-header">
+          <span class="p-badge p-b">B</span>
+          <span class="clause-num">第5・6条</span>
+          <span class="clause-title">遅延損害金（ライト修正案・段階制）</span>
+        </div>
+        <div class="clause-body">
+          <div><div class="clause-block-label">現行</div><div class="clause-current">記載なし</div></div>
+          <div><div class="clause-block-label">追加案</div><div class="clause-proposed">甲が支払期日を超えて報酬の支払を怠った場合、遅滞額に対し年率5%の割合による遅延損害金を付して支払う。ただし、支払期日から2か月を超えてなお支払がない場合、年率14.6%の割合による遅延損害金を付して支払う。</div></div>
+          <div class="clause-block-content" style="font-size:var(--text-xs);color:var(--sub);">ライト修正：14.6%即時はやりすぎ→最初2ヶ月は5%、以降14.6%の段階制</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr />
+
+  <!-- 台本 -->
+  <section id="script">
+    <p class="section-label">面談台本（統合版）</p>
+    <div class="script-section">
+      <div class="script-phase">
+        <div class="script-phase-header"><div class="script-num">0</div><div class="script-phase-title">冒頭 — 雰囲気を作る</div></div>
+        <div class="script-body">
+          <div class="script-quote">「今日はお時間いただきありがとうございます。契約書、しっかり読みました。全体的にすごく丁寧に作っていただいていて、乙側に有利な設計になっているのが伝わりました。ただ、いくつか確認・お願いしたい点があるので、今日はそれをまとめて話せればと思っています。全部で5〜6点、30分もあれば終わると思います。」</div>
+          <p><strong>まず感謝と評価を伝える。「難癖をつけに来た」ではなく「一緒に整理しに来た」トーンで入る。</strong></p>
+        </div>
+      </div>
+      <div class="script-phase">
+        <div class="script-phase-header"><div class="script-num">1</div><div class="script-phase-title">誤字修正（第8条3項）— 最初に片付ける</div></div>
+        <div class="script-body">
+          <div class="script-quote">「まず1点、明らかな誤字があって、第8条3項に『変ftっjっh更』という記載があります。これは『変更』の誤字だと思うので、署名前に修正いただけますか。」</div>
+          <p><strong>100%通る。軽く流す。</strong></p>
+        </div>
+      </div>
+      <div class="script-phase">
+        <div class="script-phase-header"><div class="script-num">2</div><div class="script-phase-title">基本報酬 — 13万円への引き上げ</div></div>
+        <div class="script-body">
+          <div class="script-quote">「次に報酬の話をさせてください。現在12万円なんですが、実際の稼働を考えると、もう少しお願いできないかと思っています。具体的には13万円にしていただきたいんですが、いかがでしょうか。」</div>
+          <p>渋られたら：<strong>「じゃあ、12万円のままでも構いません。ただその場合は、別の形で保証していただきたいことがあって…」</strong>→ 手取り保証へ</p>
+        </div>
+      </div>
+      <div class="script-phase">
+        <div class="script-phase-header"><div class="script-num">3</div><div class="script-phase-title">手取り保証 — 源泉徴収の上乗せ</div></div>
+        <div class="script-body">
+          <div class="script-quote">「業務委託報酬には源泉徴収（10.21%）が発生するケースがあります。そのままだと実際の振込額が約10万7千円になってしまうんですが、12万円を手取り額として保証していただけますか。条文に一行、『基本報酬は乙の手取り額とし…』と入れていただければ助かります。」</div>
+        </div>
+      </div>
+      <div class="script-phase">
+        <div class="script-phase-header"><div class="script-num">4</div><div class="script-phase-title">月間稼働時間（想定+超過協議）</div></div>
+        <div class="script-body">
+          <div class="script-quote">「契約書には『基本報酬は時間給ではない』と書いてありますが、実際にどのくらい稼働を想定されていますか？」</div>
+          <p>→ まず養田さんに聞く。</p>
+          <div class="script-quote" style="margin-top:var(--space-3);">「だとすると、月80時間程度を想定として条文に明記し、それを大幅に超える場合は追加報酬を協議するという形にしていただけますか。上限を設けるわけではなく、超えた際の協議の場を設けるという形です。」</div>
+          <p><strong>「上限」という言葉は使わない。業務委託の性格を保持するため。</strong></p>
+        </div>
+      </div>
+      <div class="script-phase">
+        <div class="script-phase-header"><div class="script-num">5</div><div class="script-phase-title">対象案件の事前確認プロセス</div></div>
+        <div class="script-body">
+          <div class="script-quote">「成果報酬のところなんですが、案件が終わってから『あれは対象案件じゃなかった』となる可能性がゼロじゃないかなと思っていて。案件が始まる前に、対象案件かどうかをSlackやLINEで一言確認してもらうプロセスを入れていただけますか。お互いの認識をそろえるためなので、甲にとっても後で揉めないメリットがあります。」</div>
+        </div>
+      </div>
+      <div class="script-phase">
+        <div class="script-phase-header"><div class="script-num">6</div><div class="script-phase-title">クロージング</div></div>
+        <div class="script-body">
+          <div class="script-quote">「以上です。全部通していただけるとありがたいですが、難しいものは持ち帰っていただいて。最終的に修正版の契約書を送っていただけたら署名します。」</div>
+          <p><strong>その場で合意した内容はメモして口頭確認。「修正版を送ってもらう」と明示して終わる。</strong></p>
+        </div>
       </div>
     </div>
   </section>
@@ -585,140 +455,19 @@
     <div class="comeback-list">
       <div class="comeback-item">
         <div class="comeback-trigger">「13万は厳しい」</div>
-        <div class="comeback-response">では手取り12万の保証だけお願いできますか。振込額は変わらず、計算の問題です。</div>
+        <div class="comeback-response">わかりました。では手取り12万の保証だけお願いできますか。振込額の問題なので。</div>
       </div>
       <div class="comeback-item">
         <div class="comeback-trigger">「源泉徴収はそちらでやってください」</div>
         <div class="comeback-response">確定申告は自分でやります。ただ振込額が10万7千円になるのは想定と違うので、上乗せか金額見直しかで対応してもらえると助かります。</div>
       </div>
       <div class="comeback-item">
-        <div class="comeback-trigger">「稼働時間は決めたくない」</div>
-        <div class="comeback-response">上限ではなく、超えた場合に協議する、という書き方ではどうですか。強制ではなく「話し合いの場を設ける」だけです。</div>
+        <div class="comeback-trigger">「稼働時間は決めたくない（柔軟にやりたい）」</div>
+        <div class="comeback-response">上限を設けるわけではありません。月80時間程度という想定を明記して、それを大幅に超える場合だけ協議する、という書き方です。業務委託の性格は変わりません。</div>
       </div>
       <div class="comeback-item">
         <div class="comeback-trigger">「対象案件の確認、毎回はちょっと…」</div>
-        <div class="comeback-response">SlackやLINEで一言もらうだけで十分です。後から揉めないためにお互いのためになります。</div>
-      </div>
-    </div>
-  </section>
-
-  <hr />
-
-  <!-- 詳細条文 -->
-  <section id="details">
-    <p class="section-label">追加文言案（条文レベル）</p>
-    <div style="display:grid;gap:var(--space-4);">
-
-      <div class="detail-item">
-        <div class="detail-header">
-          <span class="p-badge p-s">S</span>
-          <div>
-            <div class="detail-title">手取り保証</div>
-            <div class="detail-article">第5条1・2項</div>
-          </div>
-        </div>
-        <div class="detail-body">
-          <div class="clause-box">基本報酬は乙の手取り額とし、源泉徴収が必要な場合は甲が源泉徴収相当額を上乗せした額を支払総額とする。</div>
-        </div>
-      </div>
-
-      <div class="detail-item">
-        <div class="detail-header">
-          <span class="p-badge p-s">S</span>
-          <div>
-            <div class="detail-title">対象案件の事前確認</div>
-            <div class="detail-article">第7条</div>
-          </div>
-        </div>
-        <div class="detail-body">
-          <div class="clause-box">案件開始時に、甲は乙1および乙2に対し、当該案件が対象案件に該当するか否かを書面または電磁的方法により通知する。通知がない場合、乙が対象案件と主張したときは対象案件と推定する。</div>
-        </div>
-      </div>
-
-      <div class="detail-item">
-        <div class="detail-header">
-          <span class="p-badge p-a">A</span>
-          <div>
-            <div class="detail-title">月間稼働時間の上限</div>
-            <div class="detail-article">第5条3項</div>
-          </div>
-        </div>
-        <div class="detail-body">
-          <div class="clause-box">月間の標準稼働時間は80時間とし、甲が80時間を超える稼働を求める場合は甲乙協議のうえ追加報酬を定めなければならない。</div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <hr />
-
-  <!-- 台本 -->
-  <section id="script">
-    <p class="section-label">面談台本</p>
-    <div class="script-section">
-      <div class="script-phase">
-        <div class="script-phase-header">
-          <div class="script-num">0</div>
-          <div class="script-phase-title">冒頭 — トーン設定</div>
-        </div>
-        <div class="script-body">
-          <p>感謝から入る。<strong>「丁寧に作ってもらったのが伝わった」</strong>と正直に言う。</p>
-          <p>「いくつか確認・お願いしたい点がある、30分くらい」と宣言してから始める。</p>
-          <p><strong>難癖ではなく「一緒に整理したい」トーンを崩さない。</strong></p>
-        </div>
-      </div>
-      <div class="script-phase">
-        <div class="script-phase-header">
-          <div class="script-num">1</div>
-          <div class="script-phase-title">誤字修正（第8条3項）</div>
-        </div>
-        <div class="script-body">
-          <p>「明らかな誤字があった、修正してほしい」だけ。</p>
-          <p><strong>100%通る。軽く流す。</strong></p>
-        </div>
-      </div>
-      <div class="script-phase">
-        <div class="script-phase-header">
-          <div class="script-num">2</div>
-          <div class="script-phase-title">基本報酬（13万 or 手取り保証）</div>
-        </div>
-        <div class="script-body">
-          <p>まず<strong>13万を提示</strong>する。渋られたら「では手取り12万の保証だけ」に切り替える。</p>
-          <p>源泉徴収の説明が必要な場合：<strong>「業務委託は会社側が税金を引いて国に払うケースがある。そのまま振り込まれると10万7千円になってしまう」</strong></p>
-        </div>
-      </div>
-      <div class="script-phase">
-        <div class="script-phase-header">
-          <div class="script-num">3</div>
-          <div class="script-phase-title">月間稼働時間</div>
-        </div>
-        <div class="script-body">
-          <p>まず<strong>「実際どのくらい想定してますか？」</strong>と聞く。</p>
-          <p>向こうの回答に合わせて「じゃあそれを条文に明記しましょう」と進める。</p>
-          <p>「上限」という言葉が嫌なら<strong>「超過時の協議義務」</strong>という言い方でもいい。</p>
-        </div>
-      </div>
-      <div class="script-phase">
-        <div class="script-phase-header">
-          <div class="script-num">4</div>
-          <div class="script-phase-title">対象案件の事前確認</div>
-        </div>
-        <div class="script-body">
-          <p><strong>「案件終わってから対象外だったと言われると困る」</strong>と正直に言う。</p>
-          <p>SlackやLINEで一言でいい、という温度感で話す。「お互いのため」という角度を忘れない。</p>
-        </div>
-      </div>
-      <div class="script-phase">
-        <div class="script-phase-header">
-          <div class="script-num">5</div>
-          <div class="script-phase-title">クロージング</div>
-        </div>
-        <div class="script-body">
-          <p>「全部通してほしいが、難しいものは持ち帰ってもらっていい」</p>
-          <p><strong>「修正版を送ってもらったら確認して署名する」と明示。</strong></p>
-          <p>その場で合意した内容はメモして口頭で確認する。</p>
-        </div>
+        <div class="comeback-response">SlackやLINEで一言送ってもらうだけで十分です。事後トラブルの防止になるのでお互いのためになります。</div>
       </div>
     </div>
   </section>
@@ -730,7 +479,7 @@
     <p class="section-label">面談後にやること</p>
     <div class="card">
       <div class="todo-list">
-        <div class="todo-item"><div class="todo-box"></div><span>合意事項をその場でメモして口頭確認</span></div>
+        <div class="todo-item"><div class="todo-box"></div><span>合意事項をその場でまとめて口頭確認</span></div>
         <div class="todo-item"><div class="todo-box"></div><span>「修正版の契約書を送ってください」と明示して終わる</span></div>
         <div class="todo-item"><div class="todo-box"></div><span>修正版が届いたら統合変更要望と照合してチェック</span></div>
       </div>
@@ -739,9 +488,6 @@
 
 </main>
 
-<footer>
-  内部用 — 2026-03-23 面談準備資料 &nbsp;|&nbsp; 外部共有禁止
-</footer>
-
+<footer>内部用 — 2026-03-23 荒井＋ライト 統合版 &nbsp;|&nbsp; 外部共有禁止</footer>
 </body>
 </html>

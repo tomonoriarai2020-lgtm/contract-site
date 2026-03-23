@@ -6,340 +6,76 @@
   <title>変更要望書 — 業務委託契約書について</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --text-xs:   0.618rem;
-      --text-sm:   0.786rem;
-      --text-base: 1rem;
-      --text-md:   1.236rem;
-      --text-lg:   1.618rem;
-      --text-xl:   2.618rem;
-
-      --leading:       1.618;
-      --leading-tight: 1.236;
-
-      --space-1: 0.309rem;
-      --space-2: 0.5rem;
-      --space-3: 0.809rem;
-      --space-4: 1rem;
-      --space-5: 1.618rem;
-      --space-6: 2.618rem;
-      --space-7: 4.236rem;
-
-      --container-md: 971px;
-      --content-col:  61.8%;
-      --sidebar-col:  38.2%;
-
-      --radius-sm: 6px;
-      --radius-md: 10px;
-      --radius-lg: 14px;
-      --radius-xl: 24px;
-
-      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
-      --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
-
-      --bg:      #f6f8fc;
-      --surface: #ffffff;
-      --text:    #1b2333;
-      --sub:     #4f5d75;
-      --accent:  #2447f9;
-      --line:    #dce3f1;
+      --text-xs:0.618rem;--text-sm:0.786rem;--text-base:1rem;--text-md:1.236rem;--text-lg:1.618rem;--text-xl:2.618rem;
+      --leading:1.618;--leading-tight:1.236;
+      --space-1:0.309rem;--space-2:0.5rem;--space-3:0.809rem;--space-4:1rem;--space-5:1.618rem;--space-6:2.618rem;--space-7:4.236rem;
+      --container-md:971px;--content-col:61.8%;--sidebar-col:38.2%;
+      --radius-sm:6px;--radius-md:10px;--radius-lg:14px;--radius-xl:24px;
+      --shadow-sm:0 1px 3px rgba(0,0,0,0.06);--shadow-md:0 4px 16px rgba(0,0,0,0.08);
+      --bg:#f6f8fc;--surface:#ffffff;--text:#1b2333;--sub:#4f5d75;--accent:#2447f9;--line:#dce3f1;
     }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-        "Hiragino Kaku Gothic ProN", "Hiragino Sans",
-        "Noto Sans JP", "Yu Gothic", sans-serif;
-      font-size: var(--text-base);
-      line-height: var(--leading);
-      color: var(--text);
-      background: var(--bg);
-    }
-
-    nav {
-      background: var(--surface);
-      border-bottom: 1px solid var(--line);
-      padding: var(--space-4) var(--space-5);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    .nav-inner {
-      max-width: var(--container-md);
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .nav-logo {
-      font-size: var(--text-sm);
-      font-weight: 700;
-      color: var(--accent);
-      letter-spacing: 0.04em;
-    }
-    .nav-date {
-      font-size: var(--text-xs);
-      color: var(--sub);
-    }
-
-    /* Hero */
-    .hero {
-      max-width: var(--container-md);
-      margin: 0 auto;
-      padding: var(--space-7) var(--space-5) var(--space-6);
-    }
-    .kicker {
-      font-size: var(--text-sm);
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      color: var(--accent);
-      margin-bottom: var(--space-2);
-    }
-    h1 {
-      font-size: clamp(var(--text-lg), 3.6vw, var(--text-xl));
-      line-height: var(--leading-tight);
-      color: var(--text);
-      margin-bottom: var(--space-3);
-    }
-    .lead {
-      font-size: var(--text-md);
-      color: var(--sub);
-      max-width: 680px;
-      line-height: var(--leading);
-    }
-
-    /* From block */
-    .from-block {
-      max-width: var(--container-md);
-      margin: 0 auto;
-      padding: 0 var(--space-5) var(--space-5);
-    }
-    .from-card {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      padding: var(--space-5);
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      gap: var(--space-4);
-    }
-    .from-group { display: grid; gap: var(--space-1); }
-    .from-label { font-size: var(--text-xs); color: var(--sub); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
-    .from-value { font-size: var(--text-sm); color: var(--text); font-weight: 600; }
-
-    /* Greeting */
-    .greeting {
-      max-width: var(--container-md);
-      margin: 0 auto;
-      padding: 0 var(--space-5) var(--space-5);
-    }
-    .greeting-card {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      padding: var(--space-6);
-    }
-    .greeting-card p {
-      font-size: var(--text-sm);
-      line-height: var(--leading);
-      color: var(--text);
-      margin-bottom: var(--space-4);
-    }
-    .greeting-card p:last-child { margin-bottom: 0; }
-
-    /* Main */
-    main {
-      max-width: var(--container-md);
-      margin: 0 auto;
-      padding: 0 var(--space-5) var(--space-7);
-      display: grid;
-      gap: var(--space-5);
-    }
-
-    .section-label {
-      font-size: var(--text-xs);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--sub);
-      margin-bottom: var(--space-4);
-    }
-
-    h2 {
-      font-size: var(--text-lg);
-      line-height: var(--leading-tight);
-      margin-bottom: var(--space-4);
-    }
-
-    /* Request item */
-    .request-item {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: var(--shadow-sm);
-    }
-    .request-header {
-      display: flex;
-      align-items: center;
-      gap: var(--space-4);
-      padding: var(--space-4) var(--space-5);
-      border-bottom: 1px solid var(--line);
-      background: #f8faff;
-    }
-    .req-num {
-      width: 32px;
-      height: 32px;
-      background: var(--accent);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: var(--text-sm);
-      font-weight: 700;
-      color: white;
-      flex-shrink: 0;
-    }
-    .req-header-text { flex: 1; }
-    .req-title {
-      font-size: var(--text-md);
-      font-weight: 700;
-      color: var(--text);
-      line-height: var(--leading-tight);
-    }
-    .req-article {
-      font-size: var(--text-xs);
-      color: var(--sub);
-      margin-top: var(--space-1);
-    }
-
-    .request-body {
-      padding: var(--space-5);
-      display: grid;
-      gap: var(--space-4);
-    }
-
-    .block-label {
-      font-size: var(--text-xs);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--sub);
-      margin-bottom: var(--space-2);
-    }
-    .block-content {
-      font-size: var(--text-sm);
-      line-height: var(--leading);
-      color: var(--text);
-    }
-
-    /* Compare */
-    .compare-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-3);
-    }
-    @media (max-width: 600px) { .compare-grid { grid-template-columns: 1fr; } }
-    .compare-col {
-      border-radius: var(--radius-md);
-      padding: var(--space-3) var(--space-4);
-    }
-    .compare-col.current { background: #fff1f2; border: 1px solid #fecdd3; }
-    .compare-col.desired { background: #f0fdf4; border: 1px solid #bbf7d0; }
-    .compare-col-label {
-      font-size: var(--text-xs);
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      margin-bottom: var(--space-2);
-    }
-    .compare-col.current .compare-col-label { color: #be123c; }
-    .compare-col.desired .compare-col-label { color: #166534; }
-    .compare-col p { font-size: var(--text-sm); line-height: var(--leading); color: var(--text); margin: 0; }
-
-    /* Clause box */
-    .clause-box {
-      background: #eff6ff;
-      border-left: 4px solid var(--accent);
-      border-radius: 0 var(--radius-md) var(--radius-md) 0;
-      padding: var(--space-4) var(--space-5);
-      font-size: var(--text-sm);
-      color: var(--text);
-      line-height: var(--leading);
-    }
-    .clause-box::before {
-      content: "追加を希望する文言";
-      display: block;
-      font-size: var(--text-xs);
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      color: var(--accent);
-      margin-bottom: var(--space-2);
-    }
-
-    /* Option box */
-    .option-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-3);
-    }
-    @media (max-width: 600px) { .option-grid { grid-template-columns: 1fr; } }
-    .option-card {
-      border-radius: var(--radius-md);
-      padding: var(--space-4);
-      border: 1px solid var(--line);
-    }
-    .option-card.a { background: #eff6ff; border-color: #bfdbfe; }
-    .option-card.b { background: #f0fdf4; border-color: #bbf7d0; }
-    .option-label {
-      font-size: var(--text-xs);
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      margin-bottom: var(--space-2);
-    }
-    .option-card.a .option-label { color: #1d4ed8; }
-    .option-card.b .option-label { color: #166534; }
-    .option-card p { font-size: var(--text-sm); line-height: var(--leading); color: var(--text); margin: 0; }
-
-    /* Closing */
-    .closing-card {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      padding: var(--space-6);
-    }
-    .closing-card p {
-      font-size: var(--text-sm);
-      line-height: var(--leading);
-      color: var(--text);
-      margin-bottom: var(--space-4);
-    }
-    .closing-card p:last-child { margin-bottom: 0; }
-    .sign-block {
-      margin-top: var(--space-5);
-      padding-top: var(--space-5);
-      border-top: 1px solid var(--line);
-      display: flex;
-      justify-content: flex-end;
-      gap: var(--space-6);
-    }
-    .sign-person { text-align: right; }
-    .sign-role { font-size: var(--text-xs); color: var(--sub); }
-    .sign-name { font-size: var(--text-md); font-weight: 700; color: var(--text); margin-top: var(--space-1); }
-
-    hr { border: none; border-top: 1px solid var(--line); }
-    p { font-size: var(--text-sm); line-height: var(--leading); color: var(--sub); margin-top: var(--space-3); }
-    strong { color: var(--text); }
-
-    footer {
-      border-top: 1px solid var(--line);
-      padding: var(--space-5);
-      text-align: center;
-      font-size: var(--text-xs);
-      color: var(--sub);
-      margin-top: var(--space-6);
-    }
+    body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic",sans-serif;font-size:var(--text-base);line-height:var(--leading);color:var(--text);background:var(--bg); }
+    nav { background:var(--surface);border-bottom:1px solid var(--line);padding:var(--space-4) var(--space-5);position:sticky;top:0;z-index:100; }
+    .nav-inner { max-width:var(--container-md);margin:0 auto;display:flex;align-items:center;justify-content:space-between; }
+    .nav-logo { font-size:var(--text-sm);font-weight:700;color:var(--accent);letter-spacing:0.04em; }
+    .nav-date { font-size:var(--text-xs);color:var(--sub); }
+    .hero { max-width:var(--container-md);margin:0 auto;padding:var(--space-7) var(--space-5) var(--space-6); }
+    .kicker { font-size:var(--text-sm);font-weight:700;letter-spacing:0.04em;color:var(--accent);margin-bottom:var(--space-2); }
+    h1 { font-size:clamp(var(--text-lg),3.6vw,var(--text-xl));line-height:var(--leading-tight);color:var(--text);margin-bottom:var(--space-3); }
+    .lead { font-size:var(--text-md);color:var(--sub);max-width:680px;line-height:var(--leading); }
+    .from-block { max-width:var(--container-md);margin:0 auto;padding:0 var(--space-5) var(--space-5); }
+    .from-card { background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:var(--space-5);display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:var(--space-4); }
+    .from-group { display:grid;gap:var(--space-1); }
+    .from-label { font-size:var(--text-xs);color:var(--sub);font-weight:700;letter-spacing:0.06em;text-transform:uppercase; }
+    .from-value { font-size:var(--text-sm);color:var(--text);font-weight:600; }
+    .greeting { max-width:var(--container-md);margin:0 auto;padding:0 var(--space-5) var(--space-5); }
+    .greeting-card { background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:var(--space-6); }
+    .greeting-card p { font-size:var(--text-sm);line-height:var(--leading);color:var(--text);margin-bottom:var(--space-4); }
+    .greeting-card p:last-child { margin-bottom:0; }
+    main { max-width:var(--container-md);margin:0 auto;padding:0 var(--space-5) var(--space-7);display:grid;gap:var(--space-5); }
+    .section-label { font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--sub);margin-bottom:var(--space-4); }
+    .request-item { background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm); }
+    .request-header { display:flex;align-items:center;gap:var(--space-4);padding:var(--space-4) var(--space-5);border-bottom:1px solid var(--line);background:#f8faff; }
+    .req-num { width:32px;height:32px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:var(--text-sm);font-weight:700;color:white;flex-shrink:0; }
+    .req-header-text { flex:1; }
+    .req-title { font-size:var(--text-md);font-weight:700;color:var(--text);line-height:var(--leading-tight); }
+    .req-article { font-size:var(--text-xs);color:var(--sub);margin-top:var(--space-1); }
+    .request-body { padding:var(--space-5);display:grid;gap:var(--space-4); }
+    .block-label { font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--sub);margin-bottom:var(--space-2); }
+    .block-content { font-size:var(--text-sm);line-height:var(--leading);color:var(--text); }
+    .compare-grid { display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3); }
+    @media(max-width:600px){.compare-grid{grid-template-columns:1fr;}}
+    .compare-col { border-radius:var(--radius-md);padding:var(--space-3) var(--space-4); }
+    .compare-col.current { background:#fff1f2;border:1px solid #fecdd3; }
+    .compare-col.desired { background:#f0fdf4;border:1px solid #bbf7d0; }
+    .compare-col-label { font-size:var(--text-xs);font-weight:700;letter-spacing:0.04em;margin-bottom:var(--space-2); }
+    .compare-col.current .compare-col-label { color:#be123c; }
+    .compare-col.desired .compare-col-label { color:#166534; }
+    .compare-col p { font-size:var(--text-sm);line-height:var(--leading);color:var(--text);margin:0; }
+    .clause-box { background:#eff6ff;border-left:4px solid var(--accent);border-radius:0 var(--radius-md) var(--radius-md) 0;padding:var(--space-4) var(--space-5);font-size:var(--text-sm);color:var(--text);line-height:var(--leading); }
+    .clause-box::before { content:"追加を希望する文言";display:block;font-size:var(--text-xs);font-weight:700;letter-spacing:0.04em;color:var(--accent);margin-bottom:var(--space-2); }
+    .option-grid { display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3); }
+    @media(max-width:600px){.option-grid{grid-template-columns:1fr;}}
+    .option-card { border-radius:var(--radius-md);padding:var(--space-4);border:1px solid var(--line); }
+    .option-card.a { background:#eff6ff;border-color:#bfdbfe; }
+    .option-card.b { background:#f0fdf4;border-color:#bbf7d0; }
+    .option-label { font-size:var(--text-xs);font-weight:700;letter-spacing:0.04em;margin-bottom:var(--space-2); }
+    .option-card.a .option-label { color:#1d4ed8; }
+    .option-card.b .option-label { color:#166534; }
+    .option-card p { font-size:var(--text-sm);line-height:var(--leading);color:var(--text);margin:0; }
+    .note-box { background:#fffbeb;border:1px solid #fde68a;border-radius:var(--radius-md);padding:var(--space-3) var(--space-4);font-size:var(--text-xs);color:#92400e;line-height:var(--leading); }
+    .closing-card { background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:var(--space-6); }
+    .closing-card p { font-size:var(--text-sm);line-height:var(--leading);color:var(--text);margin-bottom:var(--space-4); }
+    .closing-card p:last-child { margin-bottom:0; }
+    .sign-block { margin-top:var(--space-5);padding-top:var(--space-5);border-top:1px solid var(--line);display:flex;justify-content:flex-end;gap:var(--space-6); }
+    .sign-person { text-align:right; }
+    .sign-role { font-size:var(--text-xs);color:var(--sub); }
+    .sign-name { font-size:var(--text-md);font-weight:700;color:var(--text);margin-top:var(--space-1); }
+    hr { border:none;border-top:1px solid var(--line); }
+    p { font-size:var(--text-sm);line-height:var(--leading);color:var(--sub);margin-top:var(--space-3); }
+    strong { color:var(--text); }
+    footer { border-top:1px solid var(--line);padding:var(--space-5);text-align:center;font-size:var(--text-xs);color:var(--sub);margin-top:var(--space-6); }
   </style>
 </head>
 <body>
@@ -359,22 +95,10 @@
 
 <div class="from-block">
   <div class="from-card">
-    <div class="from-group">
-      <div class="from-label">日付</div>
-      <div class="from-value">2026年3月23日</div>
-    </div>
-    <div class="from-group">
-      <div class="from-label">対象契約書</div>
-      <div class="from-value">業務委託契約書（2026年3月21日版）</div>
-    </div>
-    <div class="from-group">
-      <div class="from-label">提出者</div>
-      <div class="from-value">乙1：井辻光斗　乙2：荒井知憲</div>
-    </div>
-    <div class="from-group">
-      <div class="from-label">宛先</div>
-      <div class="from-value">甲：養田様</div>
-    </div>
+    <div class="from-group"><div class="from-label">日付</div><div class="from-value">2026年3月23日</div></div>
+    <div class="from-group"><div class="from-label">対象契約書</div><div class="from-value">業務委託契約書（2026年3月21日版）</div></div>
+    <div class="from-group"><div class="from-label">提出者</div><div class="from-value">乙1：井辻光斗　乙2：荒井知憲</div></div>
+    <div class="from-group"><div class="from-label">宛先</div><div class="from-value">甲：養田様</div></div>
   </div>
 </div>
 
@@ -387,37 +111,10 @@
 
 <main>
 
-  <!-- 1. 誤字修正 -->
+  <!-- 1. 基本報酬 -->
   <div class="request-item">
     <div class="request-header">
       <div class="req-num">1</div>
-      <div class="req-header-text">
-        <div class="req-title">誤字の修正</div>
-        <div class="req-article">第8条3項</div>
-      </div>
-    </div>
-    <div class="request-body">
-      <div>
-        <div class="block-label">確認事項</div>
-        <div class="block-content">第8条3項に誤字が確認されました。修正をお願いします。</div>
-      </div>
-      <div class="compare-grid">
-        <div class="compare-col current">
-          <div class="compare-col-label">現行</div>
-          <p>「本契約の性質を雇用契約に<strong>変ftっjっh更</strong>するものではない」</p>
-        </div>
-        <div class="compare-col desired">
-          <div class="compare-col-label">修正後</div>
-          <p>「本契約の性質を雇用契約に<strong>変更</strong>するものではない」</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 2. 基本報酬 -->
-  <div class="request-item">
-    <div class="request-header">
-      <div class="req-num">2</div>
       <div class="req-header-text">
         <div class="req-title">基本報酬の変更</div>
         <div class="req-article">第5条</div>
@@ -437,44 +134,41 @@
           </div>
           <div class="option-card b">
             <div class="option-label">案B：120,000円を手取り額として保証</div>
-            <p>現行の12万円を手取り額として保証いただき、源泉徴収が発生する場合は甲が上乗せする形をお願いします。</p>
+            <p>現行の12万円を手取り額として保証いただき、源泉徴収が発生する場合は甲が上乗せする形をお願いします。確定申告は乙が各自行います。</p>
           </div>
         </div>
       </div>
-      <div class="clause-box">
-        基本報酬は乙の手取り額とし、源泉徴収が必要な場合は甲が源泉徴収相当額を上乗せした額を支払総額とする。（案Bの場合の追加文言）
-      </div>
+      <div class="clause-box">案Bの場合の追加文言：「基本報酬は乙の手取り額とし、源泉徴収が必要な場合は甲が源泉徴収相当額を上乗せした額を支払総額とする。確定申告は乙1および乙2が各自行う。」</div>
+      <div class="note-box">参考：月12万の場合 → 甲の支払総額 約133,600円 ／ 月13万の場合 → 甲の支払総額 約144,800円</div>
     </div>
   </div>
 
-  <!-- 3. 稼働時間 -->
+  <!-- 2. 稼働時間 -->
   <div class="request-item">
     <div class="request-header">
-      <div class="req-num">3</div>
+      <div class="req-num">2</div>
       <div class="req-header-text">
-        <div class="req-title">月間稼働時間の標準と超過時の協議義務</div>
+        <div class="req-title">月間稼働時間の想定と超過時の協議義務</div>
         <div class="req-article">第5条</div>
       </div>
     </div>
     <div class="request-body">
       <div>
         <div class="block-label">現状の課題</div>
-        <div class="block-content">現行は「時間給ではない」との記載のみで、稼働時間の目安が定められておりません。実態として勤務時間外にも稼働しており、案件増加時に実質的な時給が下がるリスクがあります。月間の標準稼働時間をご明示いただけますと、双方にとって明確になると考えます。</div>
+        <div class="block-content">現行は「時間給ではない」との記載のみで、稼働時間の目安が定められておりません。双方の認識をそろえるため、月間の想定稼働時間をご明示いただけますと幸いです。</div>
       </div>
-      <div class="clause-box">
-        月間の標準稼働時間は80時間とし、甲が80時間を超える稼働を求める場合は甲乙協議のうえ追加報酬を定めなければならない。
-      </div>
+      <div class="clause-box">「本報酬は月間80時間程度の対応を想定して設定されており、これを大幅に超える継続的対応が発生する場合は、甲乙協議のうえ追加報酬を定める。」</div>
       <div>
         <div class="block-label">補足</div>
-        <div class="block-content">「上限」という表現が難しい場合は、「超過時に協議の場を設ける」という形でも構いません。</div>
+        <div class="block-content">稼働時間の上限を定めるものではなく、想定を明記したうえで大幅超過時に協議の場を設けるという設計です。</div>
       </div>
     </div>
   </div>
 
-  <!-- 4. 対象案件 -->
+  <!-- 3. 対象案件 -->
   <div class="request-item">
     <div class="request-header">
-      <div class="req-num">4</div>
+      <div class="req-num">3</div>
       <div class="req-header-text">
         <div class="req-title">対象案件の事前確認プロセス</div>
         <div class="req-article">第7条</div>
@@ -483,10 +177,38 @@
     <div class="request-body">
       <div>
         <div class="block-label">現状の課題</div>
-        <div class="block-content">現行の第7条は「疑義があれば誠実に協議」という設計ですが、案件開始前に対象案件かどうかを確認するプロセスがございません。案件終了後に「対象外だった」となることを双方で防ぐため、事前確認の仕組みを加えていただきたいと考えます。LINEやSlackでの一言連絡で十分です。</div>
+        <div class="block-content">現行の第7条は「疑義があれば誠実に協議」という設計ですが、案件開始前に対象案件かどうかを確認するプロセスがございません。事後の認識齟齬を双方で防ぐため、事前確認の仕組みを加えていただきたいと考えます。LINEやSlackでの一言連絡で十分です。</div>
       </div>
-      <div class="clause-box">
-        案件開始時に、甲は乙1および乙2に対し、当該案件が対象案件に該当するか否かを書面または電磁的方法により通知する。甲が通知を行わない場合、乙1または乙2が対象案件と主張したときは対象案件と推定する。
+      <div class="clause-box">「案件開始時に、甲は乙1および乙2に対し、当該案件が対象案件に該当するか否かを書面または電磁的方法により通知する。甲が通知を行わない場合、乙1または乙2が対象案件と主張したときは対象案件と推定する。」</div>
+    </div>
+  </div>
+
+  <!-- 4. 成果報酬率 -->
+  <div class="request-item">
+    <div class="request-header">
+      <div class="req-num">4</div>
+      <div class="req-header-text">
+        <div class="req-title">成果報酬率の引き上げ（余裕があれば）</div>
+        <div class="req-article">第6条1項</div>
+      </div>
+    </div>
+    <div class="request-body">
+      <div>
+        <div class="block-label">現状と要望</div>
+        <div class="compare-grid">
+          <div class="compare-col current">
+            <div class="compare-col-label">現行</div>
+            <p>対象売上の <strong>20%</strong></p>
+          </div>
+          <div class="compare-col desired">
+            <div class="compare-col-label">要望</div>
+            <p>対象売上の <strong>25%</strong></p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="block-label">根拠</div>
+        <div class="block-content">AIオートメーション開発における実質的な価値貢献に見合った水準への調整としてお願いします。</div>
       </div>
     </div>
   </div>
@@ -497,22 +219,13 @@
     <p>修正後の契約書をお送りいただけましたら、内容を確認のうえ署名いたします。ご不明な点や調整が必要な箇所があれば、お気軽にお申し付けください。</p>
     <p>引き続きよろしくお願いいたします。</p>
     <div class="sign-block">
-      <div class="sign-person">
-        <div class="sign-role">乙2</div>
-        <div class="sign-name">荒井 知憲</div>
-      </div>
-      <div class="sign-person">
-        <div class="sign-role">乙1</div>
-        <div class="sign-name">井辻 光斗</div>
-      </div>
+      <div class="sign-person"><div class="sign-role">乙2</div><div class="sign-name">荒井 知憲</div></div>
+      <div class="sign-person"><div class="sign-role">乙1</div><div class="sign-name">井辻 光斗</div></div>
     </div>
   </div>
 
 </main>
 
-<footer>
-  業務委託契約書 変更要望書 — 2026年3月23日 &nbsp;|&nbsp; 乙1：井辻光斗 / 乙2：荒井知憲
-</footer>
-
+<footer>業務委託契約書 変更要望書 — 2026年3月23日 &nbsp;|&nbsp; 乙1：井辻光斗 / 乙2：荒井知憲</footer>
 </body>
 </html>
